@@ -56,12 +56,12 @@ createTable(Pessoas)
         endereco:varchar(50)
     )
 
-Pessoas.insert(1, 'Fulano', '20', 'Rua dois')
+Pessoas.insert(1, "Fulano", "20", "Rua dois")
 
-Pessoas.find(nome: 'Fulano', idade: 20)
-Pessoas.find(nome: 'Fulano', idade: 20).columns(nome, endereco)
+Pessoas.find(nome: "Fulano", idade: 20)
+Pessoas.find(nome: "Fulano", idade: 20).columns(nome, endereco)
 
-Pessoas.delete(nome: 'Fulano')
+Pessoas.delete(nome: "Fulano")
 ```
 - Código Sql gerado pelo compilador:
 
