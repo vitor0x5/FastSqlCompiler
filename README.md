@@ -21,22 +21,22 @@ createTable(Pessoas)
 ```
 - inserindo linhas
 ```
-Pessoas.insert(1, 'Fulano', '20', 'Rua dois')
+Pessoas.insert(1, "Fulano", "20", "Rua dois")
 ```
 
 
 - Pesquisando linhas
 ``` 
-Pessoas.find(nome: 'Fulano', idade: 20)
+Pessoas.find(nome: "Fulano", idade: 20)
 ```
 
 ``` 
-Pessoas.find(nome: 'Fulano', idade: 20).columns(nome, endereco)
+Pessoas.find(nome: "Fulano", idade: 20).columns(nome, endereco)
 ``` 
 
 - Deletando linhas
 ```
-Pessoas.delete(nome: 'Fulano')
+Pessoas.delete(nome: "Fulano")
 ```
 
 
