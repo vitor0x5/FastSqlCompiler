@@ -8,6 +8,26 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface FastSqlListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by {@link FastSqlParser#script}.
+	 * @param ctx the parse tree
+	 */
+	void enterScript(FastSqlParser.ScriptContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FastSqlParser#script}.
+	 * @param ctx the parse tree
+	 */
+	void exitScript(FastSqlParser.ScriptContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FastSqlParser#commands}.
+	 * @param ctx the parse tree
+	 */
+	void enterCommands(FastSqlParser.CommandsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FastSqlParser#commands}.
+	 * @param ctx the parse tree
+	 */
+	void exitCommands(FastSqlParser.CommandsContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link FastSqlParser#create_table}.
 	 * @param ctx the parse tree
 	 */
