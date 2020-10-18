@@ -45,7 +45,9 @@ Pessoas.delete(nome: "Fulano")
 ## O compilador
 O compilador da linguagem Fast Sql gera código sql e realiza análises léxicas, 
 sintáticas e semanticas para auxiliar o programador na hora de codar. 
-### Exemplo de uso
+Ele foi criado utilizando a biblioteca [Antlr 4.8](https://www.antlr.org/) e a
+linguagem Java
+### Exemplo de geração de código
 - Código escrito em Fast Sql: 
 ```
 createTable(Pessoas)
