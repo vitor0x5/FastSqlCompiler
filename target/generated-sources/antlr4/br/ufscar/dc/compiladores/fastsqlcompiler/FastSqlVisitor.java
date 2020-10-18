@@ -11,6 +11,18 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface FastSqlVisitor<T> extends ParseTreeVisitor<T> {
 	/**
+	 * Visit a parse tree produced by {@link FastSqlParser#script}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitScript(FastSqlParser.ScriptContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FastSqlParser#commands}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCommands(FastSqlParser.CommandsContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link FastSqlParser#create_table}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

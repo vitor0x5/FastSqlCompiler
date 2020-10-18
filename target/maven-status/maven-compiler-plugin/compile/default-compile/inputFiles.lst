@@ -1,7 +1,9 @@
-/home/vitor/trabalhos-federex/compiladores/fastSqlCompiler/target/generated-sources/antlr4/br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlLexer.java
-/home/vitor/trabalhos-federex/compiladores/fastSqlCompiler/target/generated-sources/antlr4/br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlListener.java
-/home/vitor/trabalhos-federex/compiladores/fastSqlCompiler/target/generated-sources/antlr4/br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlParser.java
-/home/vitor/trabalhos-federex/compiladores/fastSqlCompiler/target/generated-sources/antlr4/br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlBaseListener.java
-/home/vitor/trabalhos-federex/compiladores/fastSqlCompiler/target/generated-sources/antlr4/br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlVisitor.java
-/home/vitor/trabalhos-federex/compiladores/fastSqlCompiler/src/main/java/br/ufscar/dc/compiladores/fastsqlcompiler/Main.java
-/home/vitor/trabalhos-federex/compiladores/fastSqlCompiler/target/generated-sources/antlr4/br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlBaseVisitor.java
+/home/vitor/Área de Trabalho/FastSqlCompiler/target/generated-sources/antlr4/br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlBaseListener.java
+/home/vitor/Área de Trabalho/FastSqlCompiler/target/generated-sources/antlr4/br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlBaseVisitor.java
+/home/vitor/Área de Trabalho/FastSqlCompiler/target/generated-sources/antlr4/br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlVisitor.java
+/home/vitor/Área de Trabalho/FastSqlCompiler/target/generated-sources/antlr4/br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlLexer.java
+/home/vitor/Área de Trabalho/FastSqlCompiler/src/main/java/br/ufscar/dc/compiladores/fastsqlcompiler/ParserErrorListener.java
+/home/vitor/Área de Trabalho/FastSqlCompiler/target/generated-sources/antlr4/br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlParser.java
+/home/vitor/Área de Trabalho/FastSqlCompiler/target/generated-sources/antlr4/br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlListener.java
+/home/vitor/Área de Trabalho/FastSqlCompiler/src/main/java/br/ufscar/dc/compiladores/fastsqlcompiler/Main.java
+/home/vitor/Área de Trabalho/FastSqlCompiler/src/main/java/br/ufscar/dc/compiladores/fastsqlcompiler/ErrorMessages.java
