@@ -51,7 +51,7 @@ public class Main {
             ParserErrorListener parserErrorListener = new ParserErrorListener();
             parser.addErrorListener(parserErrorListener);
             
-            // IF THERE I AN SYNTATIC ERROR -> FINISH EXECUTION 
+            // IF THERE IS AN SYNTATIC ERROR -> FINISH EXECUTION 
             if(ErrorMessages.errorsOutput != "") {
                 // WRITE THE OUTPUT FILE
                 outputWriter.write(ErrorMessages.errorsOutput);

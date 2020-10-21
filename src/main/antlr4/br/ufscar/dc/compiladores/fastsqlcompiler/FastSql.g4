@@ -38,30 +38,30 @@ grammar FastSql;
 
 // REGRAS SINTÁTICAS
     // SCRIPT
-    script: commands* EOF { System.out.println("Parser found a script"); };
+    script: create_table+ commands* EOF { System.out.println("Parser found a script"); };
 
-    commands: (create_table | insert | find | delete);
+    commands: create_table | insert | find | delete
+    { System.out.println("Parser found a command"); };
     
     //FUNÇÕES
-        create_table: CREATE_TABLE '(' IDENT ')'
-                              '.' COLUMNS '('
-                                  decl_column (',' decl_column)* ')' 
-        { System.out.println("Parser found a create table"); };
+    create_table: CREATE_TABLE '(' IDENT ')'
+                          '.' COLUMNS '('
+                              decl_column (',' decl_column)* ')' 
+    { System.out.println("Parser found a create_table"); };
 
-        insert: IDENT '.' INSERT '(' value ( ',' value )* ')'
-        { System.out.println("Parser found a insert"); };
+    insert: IDENT '.' INSERT '(' value ( ',' value )* ')'
+    { System.out.println("Parser found a insert"); };
 
-        find: tableName=IDENT '.' FIND '(' itemWhere (',' itemWhere)* ')'
-                              ( '.' COLUMNS '(' IDENT (',' IDENT)* ')' )?
-        { System.out.println("Parser found a find"); };
+    find: tableName=IDENT '.' FIND '(' itemWhere (',' itemWhere)* ')'
+                          ( '.' COLUMNS '(' IDENT (',' IDENT)* ')' )?
+    { System.out.println("Parser found a find"); };
 
-        delete: IDENT '.' DELETE '(' itemWhere ( ',' itemWhere )* ')'
-        { System.out.println("Parser found a delete"); };
+    delete: IDENT '.' DELETE '(' itemWhere ( ',' itemWhere )* ')'
+    { System.out.println("Parser found a delete"); };
 
 
 
     // REGRAS AUXILIARES
-    decl_column: IDENT ':' TYPE (sized)? ;
-    sized: '(' INT ')' ;
+    decl_column: IDENT ':' TYPE ('(' INT ')')? ;
     value: INT | REAL | BOOLEAN | VARCHAR | DATE;
     itemWhere: IDENT ':' value;

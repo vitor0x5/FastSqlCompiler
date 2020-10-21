@@ -143,7 +143,7 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
         for(var c: ctx.commands()){
             this.visitCommands(c);
         }
-        return null;
+        return null;    
     }
     
     @Override
