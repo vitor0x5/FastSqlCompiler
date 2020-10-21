@@ -3,6 +3,7 @@ package br.ufscar.dc.compiladores.fastsqlcompiler;
 import br.ufscar.dc.compiladores.fastsqlcompiler.ErrorHandlers.ErrorMessages;
 import br.ufscar.dc.compiladores.fastsqlcompiler.ErrorHandlers.ParserErrorListener;
 import br.ufscar.dc.compiladores.fastsqlcompiler.ErrorHandlers.LexerErrorListener;
+import br.ufscar.dc.compiladores.fastsqlcompiler.FastSqlParser.ScriptContext;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -40,6 +41,19 @@ public class Main {
             FastSqlParser parser = new FastSqlParser(tokens);
             ParserErrorListener parserErrorListener = new ParserErrorListener();
             parser.addErrorListener(parserErrorListener);
+            
+            // IF THERE I AN SYNTATIC ERROR -> FINISH EXECUTION 
+            if(ErrorMessages.errorsOutput != "") {
+                // WRITE THE OUTPUT FILE
+                outputWriter.write(ErrorMessages.errorsOutput);
+                outputWriter.close();
+                return;
+            }
+            
+            // SEMANTIC ANALYSER
+            ScriptContext script = parser.script();
+            FastSqlSemantic fsemantic = new FastSqlSemantic();
+            fsemantic.visitScript(script);  // TODO: sobrescrever o VisitPrograma de classe AlSemantico
             
             // WRITE THE OUTPUT FILE
             outputWriter.write(ErrorMessages.errorsOutput);

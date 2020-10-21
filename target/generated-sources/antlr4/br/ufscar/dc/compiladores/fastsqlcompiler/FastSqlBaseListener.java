@@ -100,6 +100,18 @@ public class FastSqlBaseListener implements FastSqlListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSized(FastSqlParser.SizedContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSized(FastSqlParser.SizedContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterValue(FastSqlParser.ValueContext ctx) { }
 	/**
 	 * {@inheritDoc}

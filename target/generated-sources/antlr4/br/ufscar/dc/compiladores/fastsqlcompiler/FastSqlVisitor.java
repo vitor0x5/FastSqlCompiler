@@ -53,6 +53,12 @@ public interface FastSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDecl_column(FastSqlParser.Decl_columnContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link FastSqlParser#sized}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSized(FastSqlParser.SizedContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link FastSqlParser#value}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

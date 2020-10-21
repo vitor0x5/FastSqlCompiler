@@ -1,9 +1,0 @@
-create&Table(Pessoas)
-    .columns(
-        id:int, 
-        nome:varchar(50), 
-        idade:varchar(3), 
-        endereco:varchar(50)
-    )
-
-Pessoas.insert("Rua dois)

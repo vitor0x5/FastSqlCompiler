@@ -49,7 +49,7 @@ grammar FastSql;
 
         insert: IDENT '.' INSERT '(' value ( ',' value )* ')';
 
-        find: IDENT '.' FIND '(' itemWhere (',' itemWhere)* ')'
+        find: tableName=IDENT '.' FIND '(' itemWhere (',' itemWhere)* ')'
                               ( '.' COLUMNS '(' IDENT (',' IDENT)* ')' )?;
 
         delete: IDENT '.' DELETE '(' itemWhere ( ',' itemWhere )* ')';
@@ -57,6 +57,7 @@ grammar FastSql;
 
 
     // REGRAS AUXILIARES
-    decl_column: IDENT ':' TYPE ';';
+    decl_column: IDENT ':' TYPE (sized)? ;
+    sized: '(' INT ')' ;
     value: INT | REAL | BOOLEAN | VARCHAR | DATE;
     itemWhere: IDENT ':' value;

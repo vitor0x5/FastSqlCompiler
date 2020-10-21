@@ -78,6 +78,16 @@ public interface FastSqlListener extends ParseTreeListener {
 	 */
 	void exitDecl_column(FastSqlParser.Decl_columnContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link FastSqlParser#sized}.
+	 * @param ctx the parse tree
+	 */
+	void enterSized(FastSqlParser.SizedContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FastSqlParser#sized}.
+	 * @param ctx the parse tree
+	 */
+	void exitSized(FastSqlParser.SizedContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link FastSqlParser#value}.
 	 * @param ctx the parse tree
 	 */

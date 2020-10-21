@@ -22,7 +22,7 @@ public class LexerErrorListener {
             } else if ("UNDEFINED_CHAR".equals(FastSqlLexer.VOCABULARY.getDisplayName(t.getType()))) {
                 ErrorMessages.undefinedSymbol(t.getText(), t.getLine());
                 return true;
-            } 
+            }
         }
         return false;
     }
