@@ -139,11 +139,35 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
 
     @Override
     public Void visitScript(FastSqlParser.ScriptContext ctx) {
-        return super.visitScript(ctx); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Visiting script context");
+        for(var c: ctx.commands()){
+            this.visitCommands(c);
+        }
+        return null;
+    }
+    
+    @Override
+    public Void visitCommands(FastSqlParser.CommandsContext ctx) {
+        System.out.println("Visiting commands context");
+        if(ctx.create_table() != null){
+            System.err.println("Have create table");
+            this.visitCreate_table(ctx.create_table());
+        }
+        if(ctx.insert() != null){
+            visitInsert(ctx.insert());
+        }
+        if(ctx.find() != null){
+            visitFind(ctx.find());
+        }
+        if(ctx.delete() != null){
+            visitDelete(ctx.delete());
+        }
+        return null;
     }
 
     @Override
     public Void visitCreate_table(FastSqlParser.Create_tableContext ctx) {
+        System.out.println("Visiting create_table context");
         String table_name = ctx.IDENT().getText();
         ArrayList<Field> table_fields = new ArrayList<>();
         
@@ -167,6 +191,7 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
 
     @Override
     public Void visitInsert(FastSqlParser.InsertContext ctx) {
+        System.out.println("Visiting insert context");
         Table table = get_table_by_name(ctx.IDENT().getText());
         
         if(table == null){
@@ -183,10 +208,9 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
 
     @Override
     public Void visitFind(FastSqlParser.FindContext ctx) {
+        System.out.println("Visiting find context");
         // precisamos verificar para cada itemWhere se o campo existe e se o valor
         // passado confere com o tipo do campo, vamos lá
-        
-        
         
         // verifica se a tabela existe
         Table table = get_table_by_name(ctx.tableName.getText());
@@ -224,6 +248,8 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
 
     @Override
     public Void visitDelete(FastSqlParser.DeleteContext ctx) {
+        System.out.println("Visiting delete context");
+
         Table table = get_table_by_name(ctx.IDENT().getText());
         
         if(table == null){

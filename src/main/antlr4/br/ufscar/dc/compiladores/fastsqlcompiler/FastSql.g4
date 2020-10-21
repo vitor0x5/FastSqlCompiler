@@ -34,25 +34,29 @@ grammar FastSql;
     WS: ( ' ' |'\t' | '\r' | '\n') -> skip;
         
     // SIMBOLO INDEFINIDO
-    UNDEFINED_CHAR: .;  
+    UNDEFINED_CHAR: . ;  
 
 // REGRAS SINTÁTICAS
     // SCRIPT
-    script: create_table+ commands EOF;
+    script: commands* EOF { System.out.println("Parser found a script"); };
 
-    commands: (create_table | insert | find | delete)*;
+    commands: (create_table | insert | find | delete);
     
     //FUNÇÕES
         create_table: CREATE_TABLE '(' IDENT ')'
                               '.' COLUMNS '('
-                                  decl_column (',' decl_column)* ')';
+                                  decl_column (',' decl_column)* ')' 
+        { System.out.println("Parser found a create table"); };
 
-        insert: IDENT '.' INSERT '(' value ( ',' value )* ')';
+        insert: IDENT '.' INSERT '(' value ( ',' value )* ')'
+        { System.out.println("Parser found a insert"); };
 
         find: tableName=IDENT '.' FIND '(' itemWhere (',' itemWhere)* ')'
-                              ( '.' COLUMNS '(' IDENT (',' IDENT)* ')' )?;
+                              ( '.' COLUMNS '(' IDENT (',' IDENT)* ')' )?
+        { System.out.println("Parser found a find"); };
 
-        delete: IDENT '.' DELETE '(' itemWhere ( ',' itemWhere )* ')';
+        delete: IDENT '.' DELETE '(' itemWhere ( ',' itemWhere )* ')'
+        { System.out.println("Parser found a delete"); };
 
 
 

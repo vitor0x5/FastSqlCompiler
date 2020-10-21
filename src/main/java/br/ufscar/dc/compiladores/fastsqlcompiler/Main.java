@@ -16,7 +16,7 @@ import org.antlr.v4.runtime.Token;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        try {
+//        try {
             // INPUT FILE 
             CharStream inputStream;
             inputStream = CharStreams.fromFileName(args[0]);
@@ -25,6 +25,15 @@ public class Main {
             
             // LEXER
             FastSqlLexer lexer = new FastSqlLexer(inputStream);
+            
+            // print tokens
+            Token t = null;
+            while ((t = lexer.nextToken()).getType() != Token.EOF) {
+                System.out.println("<" + 
+                FastSqlLexer.VOCABULARY.getDisplayName(t.getType()) + 
+                "," + t.getText() + ">");
+            }
+            
             LexerErrorListener lexerErrorListener = new LexerErrorListener(lexer);
             boolean lexerError = lexerErrorListener.run();
             
@@ -53,14 +62,22 @@ public class Main {
             // SEMANTIC ANALYSER
             ScriptContext script = parser.script();
             FastSqlSemantic fsemantic = new FastSqlSemantic();
-            fsemantic.visitScript(script);  // TODO: sobrescrever o VisitPrograma de classe AlSemantico
+            fsemantic.visitScript(script); 
             
             // WRITE THE OUTPUT FILE
-            outputWriter.write(ErrorMessages.errorsOutput);
+            if(ErrorMessages.errorsOutput != "") {
+                // WRITE THE OUTPUT FILE
+                outputWriter.write(ErrorMessages.errorsOutput);
+                outputWriter.write("Fim da compilação!\n");
+                return;
+            }
+            else{
+                //outputWriter.write(codigo_gerado);
+            }
             outputWriter.close();
-        } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        } catch (IOException ex) {
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
     }
     

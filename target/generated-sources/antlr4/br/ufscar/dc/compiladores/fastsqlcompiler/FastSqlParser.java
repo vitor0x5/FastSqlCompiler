@@ -98,15 +98,12 @@ public class FastSqlParser extends Parser {
 	}
 
 	public static class ScriptContext extends ParserRuleContext {
-		public CommandsContext commands() {
-			return getRuleContext(CommandsContext.class,0);
-		}
 		public TerminalNode EOF() { return getToken(FastSqlParser.EOF, 0); }
-		public List<Create_tableContext> create_table() {
-			return getRuleContexts(Create_tableContext.class);
+		public List<CommandsContext> commands() {
+			return getRuleContexts(CommandsContext.class);
 		}
-		public Create_tableContext create_table(int i) {
-			return getRuleContext(Create_tableContext.class,i);
+		public CommandsContext commands(int i) {
+			return getRuleContext(CommandsContext.class,i);
 		}
 		public ScriptContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -130,34 +127,27 @@ public class FastSqlParser extends Parser {
 	public final ScriptContext script() throws RecognitionException {
 		ScriptContext _localctx = new ScriptContext(_ctx, getState());
 		enterRule(_localctx, 0, RULE_script);
+		int _la;
 		try {
-			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(21); 
+			setState(23);
 			_errHandler.sync(this);
-			_alt = 1;
-			do {
-				switch (_alt) {
-				case 1:
-					{
-					{
-					setState(20);
-					create_table();
-					}
-					}
-					break;
-				default:
-					throw new NoViableAltException(this);
+			_la = _input.LA(1);
+			while (_la==CREATE_TABLE || _la==IDENT) {
+				{
+				{
+				setState(20);
+				commands();
 				}
-				setState(23); 
+				}
+				setState(25);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
-			} while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
-			setState(25);
-			commands();
+				_la = _input.LA(1);
+			}
 			setState(26);
 			match(EOF);
+			 System.out.println("Parser found a script"); 
 			}
 		}
 		catch (RecognitionException re) {
@@ -172,29 +162,17 @@ public class FastSqlParser extends Parser {
 	}
 
 	public static class CommandsContext extends ParserRuleContext {
-		public List<Create_tableContext> create_table() {
-			return getRuleContexts(Create_tableContext.class);
+		public Create_tableContext create_table() {
+			return getRuleContext(Create_tableContext.class,0);
 		}
-		public Create_tableContext create_table(int i) {
-			return getRuleContext(Create_tableContext.class,i);
+		public InsertContext insert() {
+			return getRuleContext(InsertContext.class,0);
 		}
-		public List<InsertContext> insert() {
-			return getRuleContexts(InsertContext.class);
+		public FindContext find() {
+			return getRuleContext(FindContext.class,0);
 		}
-		public InsertContext insert(int i) {
-			return getRuleContext(InsertContext.class,i);
-		}
-		public List<FindContext> find() {
-			return getRuleContexts(FindContext.class);
-		}
-		public FindContext find(int i) {
-			return getRuleContext(FindContext.class,i);
-		}
-		public List<DeleteContext> delete() {
-			return getRuleContexts(DeleteContext.class);
-		}
-		public DeleteContext delete(int i) {
-			return getRuleContext(DeleteContext.class,i);
+		public DeleteContext delete() {
+			return getRuleContext(DeleteContext.class,0);
 		}
 		public CommandsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -218,47 +196,36 @@ public class FastSqlParser extends Parser {
 	public final CommandsContext commands() throws RecognitionException {
 		CommandsContext _localctx = new CommandsContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_commands);
-		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(34);
+			setState(33);
 			_errHandler.sync(this);
-			_la = _input.LA(1);
-			while (_la==CREATE_TABLE || _la==IDENT) {
+			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
+			case 1:
+				{
+				setState(29);
+				create_table();
+				}
+				break;
+			case 2:
+				{
+				setState(30);
+				insert();
+				}
+				break;
+			case 3:
+				{
+				setState(31);
+				find();
+				}
+				break;
+			case 4:
 				{
 				setState(32);
-				_errHandler.sync(this);
-				switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
-				case 1:
-					{
-					setState(28);
-					create_table();
-					}
-					break;
-				case 2:
-					{
-					setState(29);
-					insert();
-					}
-					break;
-				case 3:
-					{
-					setState(30);
-					find();
-					}
-					break;
-				case 4:
-					{
-					setState(31);
-					delete();
-					}
-					break;
+				delete();
 				}
-				}
-				setState(36);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
+				break;
 			}
 			}
 		}
@@ -309,40 +276,41 @@ public class FastSqlParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(37);
+			setState(35);
 			match(CREATE_TABLE);
-			setState(38);
+			setState(36);
 			match(T__0);
-			setState(39);
+			setState(37);
 			match(IDENT);
-			setState(40);
+			setState(38);
 			match(T__1);
-			setState(41);
+			setState(39);
 			match(T__2);
-			setState(42);
+			setState(40);
 			match(COLUMNS);
-			setState(43);
+			setState(41);
 			match(T__0);
-			setState(44);
+			setState(42);
 			decl_column();
-			setState(49);
+			setState(47);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__3) {
 				{
 				{
-				setState(45);
+				setState(43);
 				match(T__3);
-				setState(46);
+				setState(44);
 				decl_column();
 				}
 				}
-				setState(51);
+				setState(49);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(52);
+			setState(50);
 			match(T__1);
+			 System.out.println("Parser found a create table"); 
 			}
 		}
 		catch (RecognitionException re) {
@@ -391,34 +359,35 @@ public class FastSqlParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(54);
+			setState(53);
 			match(IDENT);
-			setState(55);
+			setState(54);
 			match(T__2);
-			setState(56);
+			setState(55);
 			match(INSERT);
-			setState(57);
+			setState(56);
 			match(T__0);
-			setState(58);
+			setState(57);
 			value();
-			setState(63);
+			setState(62);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__3) {
 				{
 				{
-				setState(59);
+				setState(58);
 				match(T__3);
-				setState(60);
+				setState(59);
 				value();
 				}
 				}
-				setState(65);
+				setState(64);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(66);
+			setState(65);
 			match(T__1);
+			 System.out.println("Parser found a insert"); 
 			}
 		}
 		catch (RecognitionException re) {
@@ -534,6 +503,7 @@ public class FastSqlParser extends Parser {
 				}
 			}
 
+			 System.out.println("Parser found a find"); 
 			}
 		}
 		catch (RecognitionException re) {
@@ -582,34 +552,35 @@ public class FastSqlParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(95);
-			match(IDENT);
-			setState(96);
-			match(T__2);
 			setState(97);
-			match(DELETE);
+			match(IDENT);
 			setState(98);
-			match(T__0);
+			match(T__2);
 			setState(99);
+			match(DELETE);
+			setState(100);
+			match(T__0);
+			setState(101);
 			itemWhere();
-			setState(104);
+			setState(106);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__3) {
 				{
 				{
-				setState(100);
+				setState(102);
 				match(T__3);
-				setState(101);
+				setState(103);
 				itemWhere();
 				}
 				}
-				setState(106);
+				setState(108);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(107);
+			setState(109);
 			match(T__1);
+			 System.out.println("Parser found a delete"); 
 			}
 		}
 		catch (RecognitionException re) {
@@ -655,18 +626,18 @@ public class FastSqlParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(109);
+			setState(112);
 			match(IDENT);
-			setState(110);
-			match(T__4);
-			setState(111);
-			match(TYPE);
 			setState(113);
+			match(T__4);
+			setState(114);
+			match(TYPE);
+			setState(116);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==T__0) {
 				{
-				setState(112);
+				setState(115);
 				sized();
 				}
 			}
@@ -711,11 +682,11 @@ public class FastSqlParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(115);
+			setState(118);
 			match(T__0);
-			setState(116);
+			setState(119);
 			match(INT);
-			setState(117);
+			setState(120);
 			match(T__1);
 			}
 		}
@@ -762,7 +733,7 @@ public class FastSqlParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(119);
+			setState(122);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INT) | (1L << REAL) | (1L << BOOLEAN) | (1L << VARCHAR) | (1L << DATE))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -815,11 +786,11 @@ public class FastSqlParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(121);
+			setState(124);
 			match(IDENT);
-			setState(122);
+			setState(125);
 			match(T__4);
-			setState(123);
+			setState(126);
 			value();
 			}
 		}
@@ -835,37 +806,37 @@ public class FastSqlParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\27\u0080\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\27\u0083\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
-		"\t\13\3\2\6\2\30\n\2\r\2\16\2\31\3\2\3\2\3\2\3\3\3\3\3\3\3\3\7\3#\n\3"+
-		"\f\3\16\3&\13\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\7\4\62\n\4\f\4"+
-		"\16\4\65\13\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\7\5@\n\5\f\5\16\5C\13"+
-		"\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\7\6N\n\6\f\6\16\6Q\13\6\3\6\3\6"+
-		"\3\6\3\6\3\6\3\6\3\6\7\6Z\n\6\f\6\16\6]\13\6\3\6\5\6`\n\6\3\7\3\7\3\7"+
-		"\3\7\3\7\3\7\3\7\7\7i\n\7\f\7\16\7l\13\7\3\7\3\7\3\b\3\b\3\b\3\b\5\bt"+
-		"\n\b\3\t\3\t\3\t\3\t\3\n\3\n\3\13\3\13\3\13\3\13\3\13\2\2\f\2\4\6\b\n"+
-		"\f\16\20\22\24\2\3\4\2\17\22\24\24\2\u0081\2\27\3\2\2\2\4$\3\2\2\2\6\'"+
-		"\3\2\2\2\b8\3\2\2\2\nF\3\2\2\2\fa\3\2\2\2\16o\3\2\2\2\20u\3\2\2\2\22y"+
-		"\3\2\2\2\24{\3\2\2\2\26\30\5\6\4\2\27\26\3\2\2\2\30\31\3\2\2\2\31\27\3"+
-		"\2\2\2\31\32\3\2\2\2\32\33\3\2\2\2\33\34\5\4\3\2\34\35\7\2\2\3\35\3\3"+
-		"\2\2\2\36#\5\6\4\2\37#\5\b\5\2 #\5\n\6\2!#\5\f\7\2\"\36\3\2\2\2\"\37\3"+
-		"\2\2\2\" \3\2\2\2\"!\3\2\2\2#&\3\2\2\2$\"\3\2\2\2$%\3\2\2\2%\5\3\2\2\2"+
-		"&$\3\2\2\2\'(\7\n\2\2()\7\3\2\2)*\7\25\2\2*+\7\4\2\2+,\7\5\2\2,-\7\t\2"+
-		"\2-.\7\3\2\2.\63\5\16\b\2/\60\7\6\2\2\60\62\5\16\b\2\61/\3\2\2\2\62\65"+
-		"\3\2\2\2\63\61\3\2\2\2\63\64\3\2\2\2\64\66\3\2\2\2\65\63\3\2\2\2\66\67"+
-		"\7\4\2\2\67\7\3\2\2\289\7\25\2\29:\7\5\2\2:;\7\r\2\2;<\7\3\2\2<A\5\22"+
-		"\n\2=>\7\6\2\2>@\5\22\n\2?=\3\2\2\2@C\3\2\2\2A?\3\2\2\2AB\3\2\2\2BD\3"+
-		"\2\2\2CA\3\2\2\2DE\7\4\2\2E\t\3\2\2\2FG\7\25\2\2GH\7\5\2\2HI\7\13\2\2"+
-		"IJ\7\3\2\2JO\5\24\13\2KL\7\6\2\2LN\5\24\13\2MK\3\2\2\2NQ\3\2\2\2OM\3\2"+
-		"\2\2OP\3\2\2\2PR\3\2\2\2QO\3\2\2\2R_\7\4\2\2ST\7\5\2\2TU\7\t\2\2UV\7\3"+
-		"\2\2V[\7\25\2\2WX\7\6\2\2XZ\7\25\2\2YW\3\2\2\2Z]\3\2\2\2[Y\3\2\2\2[\\"+
-		"\3\2\2\2\\^\3\2\2\2][\3\2\2\2^`\7\4\2\2_S\3\2\2\2_`\3\2\2\2`\13\3\2\2"+
-		"\2ab\7\25\2\2bc\7\5\2\2cd\7\f\2\2de\7\3\2\2ej\5\24\13\2fg\7\6\2\2gi\5"+
-		"\24\13\2hf\3\2\2\2il\3\2\2\2jh\3\2\2\2jk\3\2\2\2km\3\2\2\2lj\3\2\2\2m"+
-		"n\7\4\2\2n\r\3\2\2\2op\7\25\2\2pq\7\7\2\2qs\7\16\2\2rt\5\20\t\2sr\3\2"+
-		"\2\2st\3\2\2\2t\17\3\2\2\2uv\7\3\2\2vw\7\17\2\2wx\7\4\2\2x\21\3\2\2\2"+
-		"yz\t\2\2\2z\23\3\2\2\2{|\7\25\2\2|}\7\7\2\2}~\5\22\n\2~\25\3\2\2\2\f\31"+
-		"\"$\63AO[_js";
+		"\t\13\3\2\7\2\30\n\2\f\2\16\2\33\13\2\3\2\3\2\3\2\3\3\3\3\3\3\3\3\5\3"+
+		"$\n\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\7\4\60\n\4\f\4\16\4\63\13"+
+		"\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\7\5?\n\5\f\5\16\5B\13\5\3\5"+
+		"\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\7\6N\n\6\f\6\16\6Q\13\6\3\6\3\6\3"+
+		"\6\3\6\3\6\3\6\3\6\7\6Z\n\6\f\6\16\6]\13\6\3\6\5\6`\n\6\3\6\3\6\3\7\3"+
+		"\7\3\7\3\7\3\7\3\7\3\7\7\7k\n\7\f\7\16\7n\13\7\3\7\3\7\3\7\3\b\3\b\3\b"+
+		"\3\b\5\bw\n\b\3\t\3\t\3\t\3\t\3\n\3\n\3\13\3\13\3\13\3\13\3\13\2\2\f\2"+
+		"\4\6\b\n\f\16\20\22\24\2\3\4\2\17\22\24\24\2\u0083\2\31\3\2\2\2\4#\3\2"+
+		"\2\2\6%\3\2\2\2\b\67\3\2\2\2\nF\3\2\2\2\fc\3\2\2\2\16r\3\2\2\2\20x\3\2"+
+		"\2\2\22|\3\2\2\2\24~\3\2\2\2\26\30\5\4\3\2\27\26\3\2\2\2\30\33\3\2\2\2"+
+		"\31\27\3\2\2\2\31\32\3\2\2\2\32\34\3\2\2\2\33\31\3\2\2\2\34\35\7\2\2\3"+
+		"\35\36\b\2\1\2\36\3\3\2\2\2\37$\5\6\4\2 $\5\b\5\2!$\5\n\6\2\"$\5\f\7\2"+
+		"#\37\3\2\2\2# \3\2\2\2#!\3\2\2\2#\"\3\2\2\2$\5\3\2\2\2%&\7\n\2\2&\'\7"+
+		"\3\2\2\'(\7\25\2\2()\7\4\2\2)*\7\5\2\2*+\7\t\2\2+,\7\3\2\2,\61\5\16\b"+
+		"\2-.\7\6\2\2.\60\5\16\b\2/-\3\2\2\2\60\63\3\2\2\2\61/\3\2\2\2\61\62\3"+
+		"\2\2\2\62\64\3\2\2\2\63\61\3\2\2\2\64\65\7\4\2\2\65\66\b\4\1\2\66\7\3"+
+		"\2\2\2\678\7\25\2\289\7\5\2\29:\7\r\2\2:;\7\3\2\2;@\5\22\n\2<=\7\6\2\2"+
+		"=?\5\22\n\2><\3\2\2\2?B\3\2\2\2@>\3\2\2\2@A\3\2\2\2AC\3\2\2\2B@\3\2\2"+
+		"\2CD\7\4\2\2DE\b\5\1\2E\t\3\2\2\2FG\7\25\2\2GH\7\5\2\2HI\7\13\2\2IJ\7"+
+		"\3\2\2JO\5\24\13\2KL\7\6\2\2LN\5\24\13\2MK\3\2\2\2NQ\3\2\2\2OM\3\2\2\2"+
+		"OP\3\2\2\2PR\3\2\2\2QO\3\2\2\2R_\7\4\2\2ST\7\5\2\2TU\7\t\2\2UV\7\3\2\2"+
+		"V[\7\25\2\2WX\7\6\2\2XZ\7\25\2\2YW\3\2\2\2Z]\3\2\2\2[Y\3\2\2\2[\\\3\2"+
+		"\2\2\\^\3\2\2\2][\3\2\2\2^`\7\4\2\2_S\3\2\2\2_`\3\2\2\2`a\3\2\2\2ab\b"+
+		"\6\1\2b\13\3\2\2\2cd\7\25\2\2de\7\5\2\2ef\7\f\2\2fg\7\3\2\2gl\5\24\13"+
+		"\2hi\7\6\2\2ik\5\24\13\2jh\3\2\2\2kn\3\2\2\2lj\3\2\2\2lm\3\2\2\2mo\3\2"+
+		"\2\2nl\3\2\2\2op\7\4\2\2pq\b\7\1\2q\r\3\2\2\2rs\7\25\2\2st\7\7\2\2tv\7"+
+		"\16\2\2uw\5\20\t\2vu\3\2\2\2vw\3\2\2\2w\17\3\2\2\2xy\7\3\2\2yz\7\17\2"+
+		"\2z{\7\4\2\2{\21\3\2\2\2|}\t\2\2\2}\23\3\2\2\2~\177\7\25\2\2\177\u0080"+
+		"\7\7\2\2\u0080\u0081\5\22\n\2\u0081\25\3\2\2\2\13\31#\61@O[_lv";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
