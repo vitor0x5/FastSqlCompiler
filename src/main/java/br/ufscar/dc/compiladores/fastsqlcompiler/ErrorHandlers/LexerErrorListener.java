@@ -24,6 +24,8 @@ public class LexerErrorListener {
                 return true;
             }
         }
+        
+        
         return false;
     }
 }

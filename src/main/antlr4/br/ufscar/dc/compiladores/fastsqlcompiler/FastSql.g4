@@ -13,6 +13,10 @@ grammar FastSql;
         DELETE: 'delete';
         INSERT: 'insert';
 
+    // CATACTERES ESPECIAIS
+        A_PARENTESES: '(';
+        F_PARENTESES: ')';
+
     fragment
     ESC_SEQ: '\\"';
 
@@ -38,30 +42,26 @@ grammar FastSql;
 
 // REGRAS SINTÁTICAS
     // SCRIPT
-    script: create_table+ commands* EOF { System.out.println("Parser found a script"); };
-
-    commands: create_table | insert | find | delete
-    { System.out.println("Parser found a command"); };
+    script: create_table create_table* commands* ;
+    
+    commands: create_table | insert | find | delete ;
     
     //FUNÇÕES
-    create_table: CREATE_TABLE '(' IDENT ')'
-                          '.' COLUMNS '('
-                              decl_column (',' decl_column)* ')' 
-    { System.out.println("Parser found a create_table"); };
+    create_table: CREATE_TABLE A_PARENTESES IDENT F_PARENTESES
+                          '.' COLUMNS A_PARENTESES
+                              decl_column (',' decl_column)* F_PARENTESES ;
 
-    insert: IDENT '.' INSERT '(' value ( ',' value )* ')'
-    { System.out.println("Parser found a insert"); };
+    insert: IDENT '.' INSERT A_PARENTESES value ( ',' value )* F_PARENTESES;
 
-    find: tableName=IDENT '.' FIND '(' itemWhere (',' itemWhere)* ')'
-                          ( '.' COLUMNS '(' IDENT (',' IDENT)* ')' )?
-    { System.out.println("Parser found a find"); };
+    find: tableName=IDENT '.' FIND A_PARENTESES itemWhere (',' itemWhere)* F_PARENTESES
+                          ( '.' COLUMNS A_PARENTESES IDENT (',' IDENT)* F_PARENTESES )?;
 
-    delete: IDENT '.' DELETE '(' itemWhere ( ',' itemWhere )* ')'
-    { System.out.println("Parser found a delete"); };
+    delete: IDENT '.' DELETE A_PARENTESES itemWhere ( ',' itemWhere )* F_PARENTESES;
 
 
 
     // REGRAS AUXILIARES
-    decl_column: IDENT ':' TYPE ('(' INT ')')? ;
+    decl_column: IDENT ':' TYPE sized?;
+    sized: A_PARENTESES INT F_PARENTESES;
     value: INT | REAL | BOOLEAN | VARCHAR | DATE;
     itemWhere: IDENT ':' value;

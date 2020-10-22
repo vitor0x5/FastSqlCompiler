@@ -16,7 +16,7 @@ import org.antlr.v4.runtime.Token;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-//        try {
+        try {
             // INPUT FILE 
             CharStream inputStream;
             inputStream = CharStreams.fromFileName(args[0]);
@@ -25,40 +25,39 @@ public class Main {
             
             // LEXER
             FastSqlLexer lexer = new FastSqlLexer(inputStream);
-            
-            // print tokens
-            Token t = null;
-            while ((t = lexer.nextToken()).getType() != Token.EOF) {
-                System.out.println("<" + 
-                FastSqlLexer.VOCABULARY.getDisplayName(t.getType()) + 
-                "," + t.getText() + ">");
-            }
-            
             LexerErrorListener lexerErrorListener = new LexerErrorListener(lexer);
             boolean lexerError = lexerErrorListener.run();
             
-            // IF THERE I AN LEXICAL ERROR -> FINISH EXECUTION 
+            // IF THERE IS A LEXICAL ERROR -> FINISH EXECUTION 
             if(lexerError) {
+                // SHOW ERRORS ON THE TERMINAL
+                System.out.println(ErrorMessages.errorsOutput);
                 // WRITE THE OUTPUT FILE
                 outputWriter.write(ErrorMessages.errorsOutput);
                 outputWriter.close();
                 return;
             }
             
+            // JUMP TO FIRST TOKEN
+            lexer.reset();
             // PARSER
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             FastSqlParser parser = new FastSqlParser(tokens);
             ParserErrorListener parserErrorListener = new ParserErrorListener();
+            parser.removeErrorListeners();
             parser.addErrorListener(parserErrorListener);
-            
-            // IF THERE IS AN SYNTATIC ERROR -> FINISH EXECUTION 
+            parser.script();
+            // IF THERE IS A SYNTATIC ERROR -> FINISH EXECUTION 
             if(ErrorMessages.errorsOutput != "") {
+                // SHOW ERRORS ON THE TERMINAL
+                System.out.println(ErrorMessages.errorsOutput);
                 // WRITE THE OUTPUT FILE
                 outputWriter.write(ErrorMessages.errorsOutput);
                 outputWriter.close();
                 return;
-            }
+            } 
             
+            parser.reset();
             // SEMANTIC ANALYSER
             ScriptContext script = parser.script();
             FastSqlSemantic fsemantic = new FastSqlSemantic();
@@ -66,18 +65,21 @@ public class Main {
             
             // WRITE THE OUTPUT FILE
             if(ErrorMessages.errorsOutput != "") {
+                // SHOW ERRORS ON THE TERMINAL
+                System.out.println(ErrorMessages.errorsOutput);
                 // WRITE THE OUTPUT FILE
                 outputWriter.write(ErrorMessages.errorsOutput);
                 outputWriter.write("Fim da compilação!\n");
+                outputWriter.close();
                 return;
             }
             else{
                 //outputWriter.write(codigo_gerado);
-            }
+            } 
             outputWriter.close();
-//        } catch (IOException ex) {
-//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
     

@@ -52,7 +52,7 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
     
     private Table get_table_by_name(String name){
         for(var table: this.tables){
-            if(table.name == name){
+            if(table.name.equals(name)){
                 return table;
             }
         }
@@ -112,8 +112,9 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
     }
     
     private boolean validate_value_with_field(Table table, String field_name, FastSqlParser.ValueContext value){
+        
         for(var field: table.fields){
-            if(field.name == field_name){
+            if(field.name.equals(field_name)){
                 if(field.type == value_to_type(value)){
                     return true;
                 }
@@ -129,7 +130,7 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
     
     private boolean field_on_table(Table table, String field_name){
         for(var field: table.fields){
-            if(field.name == field_name){
+            if(field.name.equals(field_name)){
                 return true;
             }
         }
@@ -139,18 +140,23 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
 
     @Override
     public Void visitScript(FastSqlParser.ScriptContext ctx) {
-        System.out.println("Visiting script context");
-        for(var c: ctx.commands()){
-            this.visitCommands(c);
+        if(ctx.create_table() != null) {
+            for(var c: ctx.create_table()){
+                this.visitCreate_table(c);
+            }
         }
+        if(ctx.commands() != null){
+            for(var c: ctx.commands()){
+                this.visitCommands(c);
+            }
+        }
+        
         return null;    
     }
     
     @Override
     public Void visitCommands(FastSqlParser.CommandsContext ctx) {
-        System.out.println("Visiting commands context");
         if(ctx.create_table() != null){
-            System.err.println("Have create table");
             this.visitCreate_table(ctx.create_table());
         }
         if(ctx.insert() != null){
@@ -167,7 +173,6 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
 
     @Override
     public Void visitCreate_table(FastSqlParser.Create_tableContext ctx) {
-        System.out.println("Visiting create_table context");
         String table_name = ctx.IDENT().getText();
         ArrayList<Field> table_fields = new ArrayList<>();
         
@@ -175,23 +180,21 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
             String field_name = decl_column.IDENT().getText();
             Type field_type = str_to_type(decl_column.TYPE().getText());
             int field_size = 0;
-            
-            if(decl_column.sized() != null){
+            if(decl_column.sized() != null ){
                 field_size = Integer.parseInt(decl_column.sized().INT().getText());
             }
-            
             Field field = new Field(field_name, field_size, field_type);
             table_fields.add(field);
         }
         
         Table table = new Table(table_name, table_fields);
         this.tables.add(table);
-        return super.visitCreate_table(ctx); 
+        
+        return null;
     }
 
     @Override
     public Void visitInsert(FastSqlParser.InsertContext ctx) {
-        System.out.println("Visiting insert context");
         Table table = get_table_by_name(ctx.IDENT().getText());
         
         if(table == null){
@@ -199,16 +202,13 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
             return null;
         }
         
-        if(!validate_values(table, ctx.value())){
-            return null;
-        }
+        validate_values(table, ctx.value());
         
-        return super.visitInsert(ctx); 
+        return null;
     }
 
     @Override
     public Void visitFind(FastSqlParser.FindContext ctx) {
-        System.out.println("Visiting find context");
         // precisamos verificar para cada itemWhere se o campo existe e se o valor
         // passado confere com o tipo do campo, vamos lá
         
@@ -232,7 +232,7 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
         i = 0;
         for(var ident: ctx.IDENT()){
             // pular o primeiro IDENT que é o nome da tabela
-            if(i == 0){
+            if(i != 0){
                 //os demais são campos, podemos verificar
                 String field_name = ident.getText();
                 if(!field_on_table(table, field_name)){
@@ -243,12 +243,11 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
             i++;
         }
         
-        return super.visitFind(ctx);
+        return null;
     }
 
     @Override
     public Void visitDelete(FastSqlParser.DeleteContext ctx) {
-        System.out.println("Visiting delete context");
 
         Table table = get_table_by_name(ctx.IDENT().getText());
         
@@ -264,7 +263,7 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
                 return null;
             }
         }    
-        return super.visitDelete(ctx);
+        return null;
     }
     
     

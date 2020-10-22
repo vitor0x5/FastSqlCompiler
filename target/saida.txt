@@ -1,0 +1,2 @@
+Linha 15: Campo idade é um 'VARCHAR' mas está recebendo um 'INT'
+Fim da compilação!

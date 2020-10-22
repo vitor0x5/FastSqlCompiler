@@ -40,4 +40,16 @@ public class ErrorMessages {
         String message = "Linha " + line + ": " + "Tabela " + table_name + " não possui campo " + field_name + "\n";
         errorsOutput += message;
     }
+    
+    public static void unclosedParenthesis (int line) {
+        String message = "Linha " + line + ": parenteses nao fechado\n";
+        errorsOutput += message;
+        System.out.println(message);
+    }
+    
+    public static void emptySizeDeclaration (int line) {
+        String message = "Linha " + line + ": declaracao de tamanho vazia\n";
+        errorsOutput += message;
+    }
+    
 }

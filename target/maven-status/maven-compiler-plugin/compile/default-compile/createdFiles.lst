@@ -9,8 +9,8 @@ br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlParser$CommandsContext.class
 br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlParser$SizedContext.class
 br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlParser$ScriptContext.class
 br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlSemantic.class
-br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlSemantic$Table.class
 br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlParser$FindContext.class
+br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlSemantic$Table.class
 br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlParser$ItemWhereContext.class
 br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlSemantic$Field.class
 br/ufscar/dc/compiladores/fastsqlcompiler/ErrorHandlers/LexerErrorListener.class
