@@ -18,17 +18,17 @@ public class FastSqlParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, NAME=4, COLUMNS=5, CREATE_TABLE=6, FIND=7, DELETE=8, 
-		INSERT=9, A_PARENTESES=10, F_PARENTESES=11, TYPE=12, INT=13, REAL=14, 
-		BOOLEAN=15, VARCHAR=16, NOT_CLOSED_VARCHAR=17, DATE=18, IDENT=19, WS=20, 
-		UNDEFINED_CHAR=21;
+		INSERT=9, DELETE_ALL=10, FIND_ALL=11, A_PARENTESES=12, F_PARENTESES=13, 
+		TYPE=14, INT=15, REAL=16, BOOLEAN=17, VARCHAR=18, NOT_CLOSED_VARCHAR=19, 
+		DATE=20, IDENT=21, WS=22, UNDEFINED_CHAR=23;
 	public static final int
 		RULE_script = 0, RULE_commands = 1, RULE_create_table = 2, RULE_insert = 3, 
-		RULE_find = 4, RULE_delete = 5, RULE_decl_column = 6, RULE_sized = 7, 
-		RULE_value = 8, RULE_itemWhere = 9;
+		RULE_deleteAll = 4, RULE_findAll = 5, RULE_find = 6, RULE_delete = 7, 
+		RULE_decl_column = 8, RULE_sized = 9, RULE_value = 10, RULE_itemWhere = 11;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"script", "commands", "create_table", "insert", "find", "delete", "decl_column", 
-			"sized", "value", "itemWhere"
+			"script", "commands", "create_table", "insert", "deleteAll", "findAll", 
+			"find", "delete", "decl_column", "sized", "value", "itemWhere"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -36,15 +36,16 @@ public class FastSqlParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'.'", "','", "':'", "'name'", "'columns'", "'createTable'", "'find'", 
-			"'delete'", "'insert'", "'('", "')'"
+			"'delete'", "'insert'", "'deleteAll'", "'findAll'", "'('", "')'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, null, null, null, "NAME", "COLUMNS", "CREATE_TABLE", "FIND", "DELETE", 
-			"INSERT", "A_PARENTESES", "F_PARENTESES", "TYPE", "INT", "REAL", "BOOLEAN", 
-			"VARCHAR", "NOT_CLOSED_VARCHAR", "DATE", "IDENT", "WS", "UNDEFINED_CHAR"
+			"INSERT", "DELETE_ALL", "FIND_ALL", "A_PARENTESES", "F_PARENTESES", "TYPE", 
+			"INT", "REAL", "BOOLEAN", "VARCHAR", "NOT_CLOSED_VARCHAR", "DATE", "IDENT", 
+			"WS", "UNDEFINED_CHAR"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -138,35 +139,35 @@ public class FastSqlParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(20);
-			create_table();
 			setState(24);
+			create_table();
+			setState(28);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					{
 					{
-					setState(21);
+					setState(25);
 					create_table();
 					}
 					} 
 				}
-				setState(26);
+				setState(30);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,0,_ctx);
 			}
-			setState(30);
+			setState(34);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==CREATE_TABLE || _la==IDENT) {
 				{
 				{
-				setState(27);
+				setState(31);
 				commands();
 				}
 				}
-				setState(32);
+				setState(36);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -196,6 +197,12 @@ public class FastSqlParser extends Parser {
 		public DeleteContext delete() {
 			return getRuleContext(DeleteContext.class,0);
 		}
+		public DeleteAllContext deleteAll() {
+			return getRuleContext(DeleteAllContext.class,0);
+		}
+		public FindAllContext findAll() {
+			return getRuleContext(FindAllContext.class,0);
+		}
 		public CommandsContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -219,35 +226,49 @@ public class FastSqlParser extends Parser {
 		CommandsContext _localctx = new CommandsContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_commands);
 		try {
-			setState(37);
+			setState(43);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(33);
+				setState(37);
 				create_table();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(34);
+				setState(38);
 				insert();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(35);
+				setState(39);
 				find();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(36);
+				setState(40);
 				delete();
+				}
+				break;
+			case 5:
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(41);
+				deleteAll();
+				}
+				break;
+			case 6:
+				enterOuterAlt(_localctx, 6);
+				{
+				setState(42);
+				findAll();
 				}
 				break;
 			}
@@ -307,39 +328,39 @@ public class FastSqlParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(39);
-			match(CREATE_TABLE);
-			setState(40);
-			match(A_PARENTESES);
-			setState(41);
-			match(IDENT);
-			setState(42);
-			match(F_PARENTESES);
-			setState(43);
-			match(T__0);
-			setState(44);
-			match(COLUMNS);
 			setState(45);
-			match(A_PARENTESES);
+			match(CREATE_TABLE);
 			setState(46);
-			decl_column();
+			match(A_PARENTESES);
+			setState(47);
+			match(IDENT);
+			setState(48);
+			match(F_PARENTESES);
+			setState(49);
+			match(T__0);
+			setState(50);
+			match(COLUMNS);
 			setState(51);
+			match(A_PARENTESES);
+			setState(52);
+			decl_column();
+			setState(57);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__1) {
 				{
 				{
-				setState(47);
+				setState(53);
 				match(T__1);
-				setState(48);
+				setState(54);
 				decl_column();
 				}
 				}
-				setState(53);
+				setState(59);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(54);
+			setState(60);
 			match(F_PARENTESES);
 			}
 		}
@@ -391,34 +412,186 @@ public class FastSqlParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(56);
+			setState(62);
 			match(IDENT);
-			setState(57);
+			setState(63);
 			match(T__0);
-			setState(58);
+			setState(64);
 			match(INSERT);
-			setState(59);
-			match(A_PARENTESES);
-			setState(60);
-			value();
 			setState(65);
+			match(A_PARENTESES);
+			setState(66);
+			value();
+			setState(71);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__1) {
 				{
 				{
-				setState(61);
+				setState(67);
 				match(T__1);
-				setState(62);
+				setState(68);
 				value();
 				}
 				}
-				setState(67);
+				setState(73);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(68);
+			setState(74);
 			match(F_PARENTESES);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class DeleteAllContext extends ParserRuleContext {
+		public TerminalNode IDENT() { return getToken(FastSqlParser.IDENT, 0); }
+		public TerminalNode DELETE_ALL() { return getToken(FastSqlParser.DELETE_ALL, 0); }
+		public TerminalNode A_PARENTESES() { return getToken(FastSqlParser.A_PARENTESES, 0); }
+		public TerminalNode F_PARENTESES() { return getToken(FastSqlParser.F_PARENTESES, 0); }
+		public DeleteAllContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_deleteAll; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof FastSqlListener ) ((FastSqlListener)listener).enterDeleteAll(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof FastSqlListener ) ((FastSqlListener)listener).exitDeleteAll(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof FastSqlVisitor ) return ((FastSqlVisitor<? extends T>)visitor).visitDeleteAll(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final DeleteAllContext deleteAll() throws RecognitionException {
+		DeleteAllContext _localctx = new DeleteAllContext(_ctx, getState());
+		enterRule(_localctx, 8, RULE_deleteAll);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(76);
+			match(IDENT);
+			setState(77);
+			match(T__0);
+			setState(78);
+			match(DELETE_ALL);
+			setState(79);
+			match(A_PARENTESES);
+			setState(80);
+			match(F_PARENTESES);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class FindAllContext extends ParserRuleContext {
+		public Token tableName;
+		public TerminalNode FIND_ALL() { return getToken(FastSqlParser.FIND_ALL, 0); }
+		public List<TerminalNode> A_PARENTESES() { return getTokens(FastSqlParser.A_PARENTESES); }
+		public TerminalNode A_PARENTESES(int i) {
+			return getToken(FastSqlParser.A_PARENTESES, i);
+		}
+		public List<TerminalNode> F_PARENTESES() { return getTokens(FastSqlParser.F_PARENTESES); }
+		public TerminalNode F_PARENTESES(int i) {
+			return getToken(FastSqlParser.F_PARENTESES, i);
+		}
+		public List<TerminalNode> IDENT() { return getTokens(FastSqlParser.IDENT); }
+		public TerminalNode IDENT(int i) {
+			return getToken(FastSqlParser.IDENT, i);
+		}
+		public TerminalNode COLUMNS() { return getToken(FastSqlParser.COLUMNS, 0); }
+		public FindAllContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_findAll; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof FastSqlListener ) ((FastSqlListener)listener).enterFindAll(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof FastSqlListener ) ((FastSqlListener)listener).exitFindAll(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof FastSqlVisitor ) return ((FastSqlVisitor<? extends T>)visitor).visitFindAll(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final FindAllContext findAll() throws RecognitionException {
+		FindAllContext _localctx = new FindAllContext(_ctx, getState());
+		enterRule(_localctx, 10, RULE_findAll);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(82);
+			((FindAllContext)_localctx).tableName = match(IDENT);
+			setState(83);
+			match(T__0);
+			setState(84);
+			match(FIND_ALL);
+			setState(85);
+			match(A_PARENTESES);
+			setState(86);
+			match(F_PARENTESES);
+			setState(99);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if (_la==T__0) {
+				{
+				setState(87);
+				match(T__0);
+				setState(88);
+				match(COLUMNS);
+				setState(89);
+				match(A_PARENTESES);
+				setState(90);
+				match(IDENT);
+				setState(95);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				while (_la==T__1) {
+					{
+					{
+					setState(91);
+					match(T__1);
+					setState(92);
+					match(IDENT);
+					}
+					}
+					setState(97);
+					_errHandler.sync(this);
+					_la = _input.LA(1);
+				}
+				setState(98);
+				match(F_PARENTESES);
+				}
+			}
+
 			}
 		}
 		catch (RecognitionException re) {
@@ -475,69 +648,69 @@ public class FastSqlParser extends Parser {
 
 	public final FindContext find() throws RecognitionException {
 		FindContext _localctx = new FindContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_find);
+		enterRule(_localctx, 12, RULE_find);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(70);
+			setState(101);
 			((FindContext)_localctx).tableName = match(IDENT);
-			setState(71);
+			setState(102);
 			match(T__0);
-			setState(72);
+			setState(103);
 			match(FIND);
-			setState(73);
+			setState(104);
 			match(A_PARENTESES);
-			setState(74);
+			setState(105);
 			itemWhere();
-			setState(79);
+			setState(110);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__1) {
 				{
 				{
-				setState(75);
+				setState(106);
 				match(T__1);
-				setState(76);
+				setState(107);
 				itemWhere();
 				}
 				}
-				setState(81);
+				setState(112);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(82);
+			setState(113);
 			match(F_PARENTESES);
-			setState(95);
+			setState(126);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==T__0) {
 				{
-				setState(83);
+				setState(114);
 				match(T__0);
-				setState(84);
+				setState(115);
 				match(COLUMNS);
-				setState(85);
+				setState(116);
 				match(A_PARENTESES);
-				setState(86);
+				setState(117);
 				match(IDENT);
-				setState(91);
+				setState(122);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==T__1) {
 					{
 					{
-					setState(87);
+					setState(118);
 					match(T__1);
-					setState(88);
+					setState(119);
 					match(IDENT);
 					}
 					}
-					setState(93);
+					setState(124);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
-				setState(94);
+				setState(125);
 				match(F_PARENTESES);
 				}
 			}
@@ -587,38 +760,38 @@ public class FastSqlParser extends Parser {
 
 	public final DeleteContext delete() throws RecognitionException {
 		DeleteContext _localctx = new DeleteContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_delete);
+		enterRule(_localctx, 14, RULE_delete);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(97);
+			setState(128);
 			match(IDENT);
-			setState(98);
+			setState(129);
 			match(T__0);
-			setState(99);
+			setState(130);
 			match(DELETE);
-			setState(100);
+			setState(131);
 			match(A_PARENTESES);
-			setState(101);
+			setState(132);
 			itemWhere();
-			setState(106);
+			setState(137);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__1) {
 				{
 				{
-				setState(102);
+				setState(133);
 				match(T__1);
-				setState(103);
+				setState(134);
 				itemWhere();
 				}
 				}
-				setState(108);
+				setState(139);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(109);
+			setState(140);
 			match(F_PARENTESES);
 			}
 		}
@@ -660,23 +833,23 @@ public class FastSqlParser extends Parser {
 
 	public final Decl_columnContext decl_column() throws RecognitionException {
 		Decl_columnContext _localctx = new Decl_columnContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_decl_column);
+		enterRule(_localctx, 16, RULE_decl_column);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(111);
+			setState(142);
 			match(IDENT);
-			setState(112);
+			setState(143);
 			match(T__2);
-			setState(113);
+			setState(144);
 			match(TYPE);
-			setState(115);
+			setState(146);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==A_PARENTESES) {
 				{
-				setState(114);
+				setState(145);
 				sized();
 				}
 			}
@@ -719,15 +892,15 @@ public class FastSqlParser extends Parser {
 
 	public final SizedContext sized() throws RecognitionException {
 		SizedContext _localctx = new SizedContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_sized);
+		enterRule(_localctx, 18, RULE_sized);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(117);
+			setState(148);
 			match(A_PARENTESES);
-			setState(118);
+			setState(149);
 			match(INT);
-			setState(119);
+			setState(150);
 			match(F_PARENTESES);
 			}
 		}
@@ -769,12 +942,12 @@ public class FastSqlParser extends Parser {
 
 	public final ValueContext value() throws RecognitionException {
 		ValueContext _localctx = new ValueContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_value);
+		enterRule(_localctx, 20, RULE_value);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(121);
+			setState(152);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << INT) | (1L << REAL) | (1L << BOOLEAN) | (1L << VARCHAR) | (1L << DATE))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -823,15 +996,15 @@ public class FastSqlParser extends Parser {
 
 	public final ItemWhereContext itemWhere() throws RecognitionException {
 		ItemWhereContext _localctx = new ItemWhereContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_itemWhere);
+		enterRule(_localctx, 22, RULE_itemWhere);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(123);
+			setState(154);
 			match(IDENT);
-			setState(124);
+			setState(155);
 			match(T__2);
-			setState(125);
+			setState(156);
 			value();
 			}
 		}
@@ -847,37 +1020,49 @@ public class FastSqlParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\27\u0082\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\31\u00a1\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
-		"\t\13\3\2\3\2\7\2\31\n\2\f\2\16\2\34\13\2\3\2\7\2\37\n\2\f\2\16\2\"\13"+
-		"\2\3\3\3\3\3\3\3\3\5\3(\n\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\7"+
-		"\4\64\n\4\f\4\16\4\67\13\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\7\5B\n"+
-		"\5\f\5\16\5E\13\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\6\3\6\7\6P\n\6\f\6\16"+
-		"\6S\13\6\3\6\3\6\3\6\3\6\3\6\3\6\3\6\7\6\\\n\6\f\6\16\6_\13\6\3\6\5\6"+
-		"b\n\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7\7\7k\n\7\f\7\16\7n\13\7\3\7\3\7\3\b"+
-		"\3\b\3\b\3\b\5\bv\n\b\3\t\3\t\3\t\3\t\3\n\3\n\3\13\3\13\3\13\3\13\3\13"+
-		"\2\2\f\2\4\6\b\n\f\16\20\22\24\2\3\4\2\17\22\24\24\2\u0083\2\26\3\2\2"+
-		"\2\4\'\3\2\2\2\6)\3\2\2\2\b:\3\2\2\2\nH\3\2\2\2\fc\3\2\2\2\16q\3\2\2\2"+
-		"\20w\3\2\2\2\22{\3\2\2\2\24}\3\2\2\2\26\32\5\6\4\2\27\31\5\6\4\2\30\27"+
-		"\3\2\2\2\31\34\3\2\2\2\32\30\3\2\2\2\32\33\3\2\2\2\33 \3\2\2\2\34\32\3"+
-		"\2\2\2\35\37\5\4\3\2\36\35\3\2\2\2\37\"\3\2\2\2 \36\3\2\2\2 !\3\2\2\2"+
-		"!\3\3\2\2\2\" \3\2\2\2#(\5\6\4\2$(\5\b\5\2%(\5\n\6\2&(\5\f\7\2\'#\3\2"+
-		"\2\2\'$\3\2\2\2\'%\3\2\2\2\'&\3\2\2\2(\5\3\2\2\2)*\7\b\2\2*+\7\f\2\2+"+
-		",\7\25\2\2,-\7\r\2\2-.\7\3\2\2./\7\7\2\2/\60\7\f\2\2\60\65\5\16\b\2\61"+
-		"\62\7\4\2\2\62\64\5\16\b\2\63\61\3\2\2\2\64\67\3\2\2\2\65\63\3\2\2\2\65"+
-		"\66\3\2\2\2\668\3\2\2\2\67\65\3\2\2\289\7\r\2\29\7\3\2\2\2:;\7\25\2\2"+
-		";<\7\3\2\2<=\7\13\2\2=>\7\f\2\2>C\5\22\n\2?@\7\4\2\2@B\5\22\n\2A?\3\2"+
-		"\2\2BE\3\2\2\2CA\3\2\2\2CD\3\2\2\2DF\3\2\2\2EC\3\2\2\2FG\7\r\2\2G\t\3"+
-		"\2\2\2HI\7\25\2\2IJ\7\3\2\2JK\7\t\2\2KL\7\f\2\2LQ\5\24\13\2MN\7\4\2\2"+
-		"NP\5\24\13\2OM\3\2\2\2PS\3\2\2\2QO\3\2\2\2QR\3\2\2\2RT\3\2\2\2SQ\3\2\2"+
-		"\2Ta\7\r\2\2UV\7\3\2\2VW\7\7\2\2WX\7\f\2\2X]\7\25\2\2YZ\7\4\2\2Z\\\7\25"+
-		"\2\2[Y\3\2\2\2\\_\3\2\2\2][\3\2\2\2]^\3\2\2\2^`\3\2\2\2_]\3\2\2\2`b\7"+
-		"\r\2\2aU\3\2\2\2ab\3\2\2\2b\13\3\2\2\2cd\7\25\2\2de\7\3\2\2ef\7\n\2\2"+
-		"fg\7\f\2\2gl\5\24\13\2hi\7\4\2\2ik\5\24\13\2jh\3\2\2\2kn\3\2\2\2lj\3\2"+
-		"\2\2lm\3\2\2\2mo\3\2\2\2nl\3\2\2\2op\7\r\2\2p\r\3\2\2\2qr\7\25\2\2rs\7"+
-		"\5\2\2su\7\16\2\2tv\5\20\t\2ut\3\2\2\2uv\3\2\2\2v\17\3\2\2\2wx\7\f\2\2"+
-		"xy\7\17\2\2yz\7\r\2\2z\21\3\2\2\2{|\t\2\2\2|\23\3\2\2\2}~\7\25\2\2~\177"+
-		"\7\5\2\2\177\u0080\5\22\n\2\u0080\25\3\2\2\2\f\32 \'\65CQ]alu";
+		"\t\13\4\f\t\f\4\r\t\r\3\2\3\2\7\2\35\n\2\f\2\16\2 \13\2\3\2\7\2#\n\2\f"+
+		"\2\16\2&\13\2\3\3\3\3\3\3\3\3\3\3\3\3\5\3.\n\3\3\4\3\4\3\4\3\4\3\4\3\4"+
+		"\3\4\3\4\3\4\3\4\7\4:\n\4\f\4\16\4=\13\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3"+
+		"\5\3\5\7\5H\n\5\f\5\16\5K\13\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\6\3\7\3\7"+
+		"\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\7\7`\n\7\f\7\16\7c\13\7\3\7\5\7f"+
+		"\n\7\3\b\3\b\3\b\3\b\3\b\3\b\3\b\7\bo\n\b\f\b\16\br\13\b\3\b\3\b\3\b\3"+
+		"\b\3\b\3\b\3\b\7\b{\n\b\f\b\16\b~\13\b\3\b\5\b\u0081\n\b\3\t\3\t\3\t\3"+
+		"\t\3\t\3\t\3\t\7\t\u008a\n\t\f\t\16\t\u008d\13\t\3\t\3\t\3\n\3\n\3\n\3"+
+		"\n\5\n\u0095\n\n\3\13\3\13\3\13\3\13\3\f\3\f\3\r\3\r\3\r\3\r\3\r\2\2\16"+
+		"\2\4\6\b\n\f\16\20\22\24\26\30\2\3\4\2\21\24\26\26\2\u00a4\2\32\3\2\2"+
+		"\2\4-\3\2\2\2\6/\3\2\2\2\b@\3\2\2\2\nN\3\2\2\2\fT\3\2\2\2\16g\3\2\2\2"+
+		"\20\u0082\3\2\2\2\22\u0090\3\2\2\2\24\u0096\3\2\2\2\26\u009a\3\2\2\2\30"+
+		"\u009c\3\2\2\2\32\36\5\6\4\2\33\35\5\6\4\2\34\33\3\2\2\2\35 \3\2\2\2\36"+
+		"\34\3\2\2\2\36\37\3\2\2\2\37$\3\2\2\2 \36\3\2\2\2!#\5\4\3\2\"!\3\2\2\2"+
+		"#&\3\2\2\2$\"\3\2\2\2$%\3\2\2\2%\3\3\2\2\2&$\3\2\2\2\'.\5\6\4\2(.\5\b"+
+		"\5\2).\5\16\b\2*.\5\20\t\2+.\5\n\6\2,.\5\f\7\2-\'\3\2\2\2-(\3\2\2\2-)"+
+		"\3\2\2\2-*\3\2\2\2-+\3\2\2\2-,\3\2\2\2.\5\3\2\2\2/\60\7\b\2\2\60\61\7"+
+		"\16\2\2\61\62\7\27\2\2\62\63\7\17\2\2\63\64\7\3\2\2\64\65\7\7\2\2\65\66"+
+		"\7\16\2\2\66;\5\22\n\2\678\7\4\2\28:\5\22\n\29\67\3\2\2\2:=\3\2\2\2;9"+
+		"\3\2\2\2;<\3\2\2\2<>\3\2\2\2=;\3\2\2\2>?\7\17\2\2?\7\3\2\2\2@A\7\27\2"+
+		"\2AB\7\3\2\2BC\7\13\2\2CD\7\16\2\2DI\5\26\f\2EF\7\4\2\2FH\5\26\f\2GE\3"+
+		"\2\2\2HK\3\2\2\2IG\3\2\2\2IJ\3\2\2\2JL\3\2\2\2KI\3\2\2\2LM\7\17\2\2M\t"+
+		"\3\2\2\2NO\7\27\2\2OP\7\3\2\2PQ\7\f\2\2QR\7\16\2\2RS\7\17\2\2S\13\3\2"+
+		"\2\2TU\7\27\2\2UV\7\3\2\2VW\7\r\2\2WX\7\16\2\2Xe\7\17\2\2YZ\7\3\2\2Z["+
+		"\7\7\2\2[\\\7\16\2\2\\a\7\27\2\2]^\7\4\2\2^`\7\27\2\2_]\3\2\2\2`c\3\2"+
+		"\2\2a_\3\2\2\2ab\3\2\2\2bd\3\2\2\2ca\3\2\2\2df\7\17\2\2eY\3\2\2\2ef\3"+
+		"\2\2\2f\r\3\2\2\2gh\7\27\2\2hi\7\3\2\2ij\7\t\2\2jk\7\16\2\2kp\5\30\r\2"+
+		"lm\7\4\2\2mo\5\30\r\2nl\3\2\2\2or\3\2\2\2pn\3\2\2\2pq\3\2\2\2qs\3\2\2"+
+		"\2rp\3\2\2\2s\u0080\7\17\2\2tu\7\3\2\2uv\7\7\2\2vw\7\16\2\2w|\7\27\2\2"+
+		"xy\7\4\2\2y{\7\27\2\2zx\3\2\2\2{~\3\2\2\2|z\3\2\2\2|}\3\2\2\2}\177\3\2"+
+		"\2\2~|\3\2\2\2\177\u0081\7\17\2\2\u0080t\3\2\2\2\u0080\u0081\3\2\2\2\u0081"+
+		"\17\3\2\2\2\u0082\u0083\7\27\2\2\u0083\u0084\7\3\2\2\u0084\u0085\7\n\2"+
+		"\2\u0085\u0086\7\16\2\2\u0086\u008b\5\30\r\2\u0087\u0088\7\4\2\2\u0088"+
+		"\u008a\5\30\r\2\u0089\u0087\3\2\2\2\u008a\u008d\3\2\2\2\u008b\u0089\3"+
+		"\2\2\2\u008b\u008c\3\2\2\2\u008c\u008e\3\2\2\2\u008d\u008b\3\2\2\2\u008e"+
+		"\u008f\7\17\2\2\u008f\21\3\2\2\2\u0090\u0091\7\27\2\2\u0091\u0092\7\5"+
+		"\2\2\u0092\u0094\7\20\2\2\u0093\u0095\5\24\13\2\u0094\u0093\3\2\2\2\u0094"+
+		"\u0095\3\2\2\2\u0095\23\3\2\2\2\u0096\u0097\7\16\2\2\u0097\u0098\7\21"+
+		"\2\2\u0098\u0099\7\17\2\2\u0099\25\3\2\2\2\u009a\u009b\t\2\2\2\u009b\27"+
+		"\3\2\2\2\u009c\u009d\7\27\2\2\u009d\u009e\7\5\2\2\u009e\u009f\5\26\f\2"+
+		"\u009f\31\3\2\2\2\16\36$-;Iaep|\u0080\u008b\u0094";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

@@ -8,7 +8,7 @@ class GeradorDeCodigo {
     public static String output = "";
     
     public static void addLine(String line){
-        output += line + "\n";
+        output += line + "\n\n";
     }
     
     public static void addLine(String line, int identation){

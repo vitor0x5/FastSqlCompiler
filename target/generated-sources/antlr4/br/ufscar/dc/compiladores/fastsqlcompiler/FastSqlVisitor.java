@@ -35,6 +35,18 @@ public interface FastSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInsert(FastSqlParser.InsertContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link FastSqlParser#deleteAll}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeleteAll(FastSqlParser.DeleteAllContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link FastSqlParser#findAll}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFindAll(FastSqlParser.FindAllContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link FastSqlParser#find}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

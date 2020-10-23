@@ -1,2 +1,26 @@
-Linha 15: Campo idade é um 'VARCHAR' mas está recebendo um 'INT'
-Fim da compilação!
+CREATE TABLE Pessoas(
+
+  id INT
+
+  nome VARCHAR(50)
+
+  idade VARCHAR(3)
+
+  endereco VARCHAR(50)
+
+);
+
+INSERT INTO Pessoas(id, nome, idade, endereco, ) VALUES (1, "Fulano", "20", "Rua dois");
+
+SELECT * FROM Pessoas WHERE nome = "Fulano" AND idade = "20";
+
+SELECT (nome, endereco) FROM Pessoas WHERE nome = "Fulano" AND idade = "20";
+
+SELECT * FROM Pessoas;
+
+SELECT (idade, endereco) FROM Pessoas;
+
+DELETE FROM Pessoas WHERE nome = "Fulano" AND idade = "20";
+
+DELETE FROM Pessoas;
+

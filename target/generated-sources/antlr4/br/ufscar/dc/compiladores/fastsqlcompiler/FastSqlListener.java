@@ -48,6 +48,26 @@ public interface FastSqlListener extends ParseTreeListener {
 	 */
 	void exitInsert(FastSqlParser.InsertContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link FastSqlParser#deleteAll}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeleteAll(FastSqlParser.DeleteAllContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FastSqlParser#deleteAll}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeleteAll(FastSqlParser.DeleteAllContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link FastSqlParser#findAll}.
+	 * @param ctx the parse tree
+	 */
+	void enterFindAll(FastSqlParser.FindAllContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link FastSqlParser#findAll}.
+	 * @param ctx the parse tree
+	 */
+	void exitFindAll(FastSqlParser.FindAllContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link FastSqlParser#find}.
 	 * @param ctx the parse tree
 	 */

@@ -12,6 +12,8 @@ grammar FastSql;
         FIND: 'find';
         DELETE: 'delete';
         INSERT: 'insert';
+        DELETE_ALL: 'deleteAll';
+        FIND_ALL: 'findAll';
 
     // CATACTERES ESPECIAIS
         A_PARENTESES: '(';
@@ -44,7 +46,7 @@ grammar FastSql;
     // SCRIPT
     script: create_table create_table* commands* ;
     
-    commands: create_table | insert | find | delete ;
+    commands: create_table | insert | find | delete | deleteAll | findAll;
     
     //FUNÇÕES
     create_table: CREATE_TABLE A_PARENTESES IDENT F_PARENTESES
@@ -53,12 +55,15 @@ grammar FastSql;
 
     insert: IDENT '.' INSERT A_PARENTESES value ( ',' value )* F_PARENTESES;
 
+    deleteAll: IDENT '.' DELETE_ALL A_PARENTESES F_PARENTESES;
+    
+    findAll: tableName=IDENT '.' FIND_ALL A_PARENTESES F_PARENTESES 
+                        ( '.' COLUMNS A_PARENTESES IDENT (',' IDENT)* F_PARENTESES )?;
+
     find: tableName=IDENT '.' FIND A_PARENTESES itemWhere (',' itemWhere)* F_PARENTESES
                           ( '.' COLUMNS A_PARENTESES IDENT (',' IDENT)* F_PARENTESES )?;
 
     delete: IDENT '.' DELETE A_PARENTESES itemWhere ( ',' itemWhere )* F_PARENTESES;
-
-
 
     // REGRAS AUXILIARES
     decl_column: IDENT ':' TYPE sized?;

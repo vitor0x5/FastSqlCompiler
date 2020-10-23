@@ -114,7 +114,7 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
         for(var value: values){
             if(value_to_type(value) == table.fields.get(i).type){
                 if(value_to_type(value) == Type.VARCHAR){
-                    if(table.fields.get(i).len < value.VARCHAR().getText().length()){
+                    if(table.fields.get(i).len < value.VARCHAR().getText().length() -2){
                         ErrorMessages.ToBigVarchar(table.fields.get(i).name, table.fields.get(i).len, value.VARCHAR().getSymbol().getLine());
                         return false;
                     }
@@ -170,23 +170,6 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
         }
         
         return null;    
-    }
-    
-    @Override
-    public Void visitCommands(FastSqlParser.CommandsContext ctx) {
-        if(ctx.create_table() != null){
-            this.visitCreate_table(ctx.create_table());
-        }
-        if(ctx.insert() != null){
-            visitInsert(ctx.insert());
-        }
-        if(ctx.find() != null){
-            visitFind(ctx.find());
-        }
-        if(ctx.delete() != null){
-            visitDelete(ctx.delete());
-        }
-        return null;
     }
 
     @Override
@@ -246,13 +229,25 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
                     
             for(var value: ctx.value()){
                 values += value.getText();
-                if(value != ctx.value(ctx.value().)){
-                    s += ", ";
-                }
+                if(value != ctx.value(ctx.value().size() - 1)){
+                    values += ", ";
+                } 
             }
+            
+            int nFields = table.fields.size();
+            int i = 0;
+            for(var field: table.fields){
+                columns += field.name;
+                if(i < nFields){
+                    columns += ", ";
+                }
+                i++;
+            }
+            
+            s += columns + ") VALUES (" + values + ");";
+            GeradorDeCodigo.addLine(s);
+            
         };
-        
-        
         return null;
     }
 
@@ -292,6 +287,54 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
             i++;
         }
         
+        // gerar código
+        // SELECT (columns) FROM table WHERE conditions
+        String s = "SELECT ";
+        String columns = "(";
+        i = 0;
+        for(var ident: ctx.IDENT()) {
+            if(i != 0) {
+                columns += ident.getText();
+                if(ident != ctx.IDENT(ctx.IDENT().size() - 1)) {
+                    columns += ", ";
+                }
+            }
+            i++;
+        }
+        
+        if(columns.equals("(")){    
+            s += "* "; // nenhuma coluna foi especificada
+        } else {
+            s += columns + ") ";
+        }
+        
+        s += "FROM " + table.name +" WHERE ";
+        
+        for(var itemWhere: ctx.itemWhere()) {
+            s+= itemWhere.IDENT().getText() + " = ";
+            
+            if(itemWhere.value().VARCHAR() != null) {
+                s+= itemWhere.value().VARCHAR().getText();
+            } else if (itemWhere.value().INT() != null) {
+                s+= itemWhere.value().INT().getText();
+            }
+            else if (itemWhere.value().REAL() != null) {
+                s+= itemWhere.value().REAL().getText();
+            } else if (itemWhere.value().BOOLEAN() != null) {
+                s+= itemWhere.value().BOOLEAN().getText();
+            } else if (itemWhere.value().DATE() != null) {
+                s+= itemWhere.value().DATE().getText();
+            }
+            
+            // se não for o ultimo
+            if(itemWhere != ctx.itemWhere(ctx.itemWhere().size() - 1)) {
+                s += " AND ";
+            }
+        }
+        
+        s+=";";
+        GeradorDeCodigo.addLine(s);
+        
         return null;
     }
 
@@ -311,9 +354,109 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
             if(!validate_value_with_field(table, field_name, itemWhere.value())){
                 return null;
             }
-        }    
+        } 
+        
+        // gerar codigo
+        // DELETE FROM tableName WHERE conditions
+        String s = "DELETE FROM " + table.name + " WHERE ";
+        
+        for(var itemWhere: ctx.itemWhere()) {
+            s+= itemWhere.IDENT().getText() + " = ";
+            
+            if(itemWhere.value().VARCHAR() != null) {
+                s+= itemWhere.value().VARCHAR().getText();
+            } else if (itemWhere.value().INT() != null) {
+                s+= itemWhere.value().INT().getText();
+            }
+            else if (itemWhere.value().REAL() != null) {
+                s+= itemWhere.value().REAL().getText();
+            } else if (itemWhere.value().BOOLEAN() != null) {
+                s+= itemWhere.value().BOOLEAN().getText();
+            } else if (itemWhere.value().DATE() != null) {
+                s+= itemWhere.value().DATE().getText();
+            }
+            
+            // se não for o ultimo
+            if(itemWhere != ctx.itemWhere(ctx.itemWhere().size() - 1)) {
+                s += " AND ";
+            }
+        }
+        
+        s+=";";
+        GeradorDeCodigo.addLine(s);
+        
         return null;
     }
+
+    @Override
+    public Void visitDeleteAll(FastSqlParser.DeleteAllContext ctx) {
+        Table table = get_table_by_name(ctx.IDENT().getText());
+        
+        if(table == null){
+            ErrorMessages.NoTableWithThisName(ctx.IDENT().getText(), ctx.IDENT().getSymbol().getLine());
+            return null;
+        }
+        
+        // gerar codigo
+        // DELETE FROM tableName
+        String s = "DELETE FROM " +table.name +";";
+        GeradorDeCodigo.addLine(s);
+        return null;
+    }
+
+    @Override
+    public Void visitFindAll(FastSqlParser.FindAllContext ctx) {
+        // verifica se a tabela existe
+        Table table = get_table_by_name(ctx.tableName.getText());
+        
+        if(table == null){
+            ErrorMessages.NoTableWithThisName(ctx.tableName.getText(), ctx.tableName.getLine());
+            return null;
+        }
+        
+        int i = 0;
+        for(var ident: ctx.IDENT()){
+            // pular o primeiro IDENT que é o nome da tabela
+            if(i != 0){
+                //os demais são campos, podemos verificar
+                String field_name = ident.getText();
+                if(!field_on_table(table, field_name)){
+                    ErrorMessages.TableHasNoField(table.name, field_name, ident.getSymbol().getLine());
+                    return null;
+                }
+            }
+            i++;
+        }
+        
+        // gerar código
+        // SELECT (columns) FROM table WHERE conditions
+        String s = "SELECT ";
+        String columns = "(";
+        i = 0;
+        for(var ident: ctx.IDENT()) {
+            if(i != 0) {
+                columns += ident.getText();
+                if(ident != ctx.IDENT(ctx.IDENT().size() - 1)) {
+                    columns += ", ";
+                }
+            }
+            i++;
+        }
+        
+        if(columns.equals("(")){    
+            s += "* "; // nenhuma coluna foi especificada
+        } else {
+            s += columns + ") ";
+        }
+        
+        s+= "FROM " + table.name + ";";
+        GeradorDeCodigo.addLine(s);
+        return null;
+    }
+    
+    
+    
+    
     
     
 }

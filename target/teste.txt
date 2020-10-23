@@ -12,4 +12,12 @@ Pessoas.find(nome: "Fulano", idade: "20")
 
 Pessoas.find(nome: "Fulano", idade: "20").columns(nome, endereco)
 
+Pessoas.findAll()
+
+Pessoas.findAll().columns(idade, endereco)
+
 Pessoas.delete(nome: "Fulano", idade: "20")
+
+Pessoas.deleteAll()
+
+

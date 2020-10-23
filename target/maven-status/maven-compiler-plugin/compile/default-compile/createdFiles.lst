@@ -1,7 +1,7 @@
 br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlLexer.class
 br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlParser$SizedContext.class
-br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlSemantic.class
 br/ufscar/dc/compiladores/fastsqlcompiler/GeradorDeCodigo$1.class
+br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlSemantic.class
 br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlParser$ItemWhereContext.class
 br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlSemantic$Field.class
 br/ufscar/dc/compiladores/fastsqlcompiler/ErrorHandlers/LexerErrorListener.class
@@ -16,11 +16,13 @@ br/ufscar/dc/compiladores/fastsqlcompiler/ErrorHandlers/ErrorMessages.class
 br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlSemantic$Type.class
 br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlParser$CommandsContext.class
 br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlParser$ScriptContext.class
-br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlSemantic$Table.class
 br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlParser$FindContext.class
+br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlSemantic$Table.class
+br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlParser$FindAllContext.class
 br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlParser.class
 br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlParser$InsertContext.class
 br/ufscar/dc/compiladores/fastsqlcompiler/ErrorHandlers/ParserErrorListener.class
 br/ufscar/dc/compiladores/fastsqlcompiler/Main.class
+br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlParser$DeleteAllContext.class
 br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlVisitor.class
 br/ufscar/dc/compiladores/fastsqlcompiler/FastSqlListener.class
