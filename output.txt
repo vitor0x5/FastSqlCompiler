@@ -1,2 +1,7 @@
-Linha 12: Campo data é um 'DATE' mas está recebendo um 'INT'
-Fim da compilação!
+CREATE TABLE Pessoas(
+  idade INT
+  data DATE
+  nome VARCHAR(50)
+  money FLOAT
+  programa BOOL
+);

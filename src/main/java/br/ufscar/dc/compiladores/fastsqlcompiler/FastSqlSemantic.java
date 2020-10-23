@@ -213,6 +213,17 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
         Table table = new Table(table_name, table_fields);
         this.tables.add(table);
         
+        //CREATE TABLE table_name (
+        //    column1 datatype,
+        //    column2 datatype,
+        //    column3 datatype,
+        //   ....
+        //);
+        GeradorDeCodigo.addLine("CREATE TABLE " + table.name + "(");
+        for(var field: table.fields){
+            GeradorDeCodigo.addLine(field.name + " " + GeradorDeCodigo.type_to_sql(field), 1);
+        }
+        GeradorDeCodigo.addLine(");");
         return null;
     }
 

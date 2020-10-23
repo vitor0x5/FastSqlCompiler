@@ -6,7 +6,3 @@ createTable(Pessoas)
         money:real,
         programa:boolean
     )
-
-Pessoas.insert(22, 1998-06-04, "Bortoasdasdasd", 1.0, true)
-Pessoas.delete(idade: 1)
-Pessoas.find(data: 1998-06-0)
