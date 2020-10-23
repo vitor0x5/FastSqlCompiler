@@ -34,9 +34,20 @@ Pessoas.find(nome: "Fulano", idade: "20")
 Pessoas.find(nome: "Fulano", idade: "20").columns(nome, endereco)
 ``` 
 
+``` 
+Pessoas.findAll()
+```
+
+``` 
+Pessoas.findAll().columns(nome, endereco)
+``` 
+
 - Deletando linhas
 ```
 Pessoas.delete(nome: "Fulano")
+```
+```
+Pessoas.deleteAll()
 ```
 
 
@@ -62,8 +73,11 @@ Pessoas.insert(1, "Fulano", "20", "Rua dois")
 
 Pessoas.find(nome: "Fulano", idade: "20")
 Pessoas.find(nome: "Fulano", idade: "20").columns(nome, endereco)
+Pessoas.findAll()
+Pessoas.findAll().columns(nome, endereco)
 
 Pessoas.delete(nome: "Fulano")
+Pessoas.deleteAll()
 ```
 - Código Sql gerado pelo compilador:
 
@@ -79,8 +93,11 @@ INSERT INTO Pessoas VALUES (1, 'Fulano', '20', 'Rua dois');
 
 SELECT * FROM Pessoas WHERE nome = 'Fulano' AND idade = '20';
 SELECT (nome, endereco) FROM Pessoas WHERE nome = 'Fulano' AND idade = '20';
+SELECT * FROM Pessoas
+SELECT (nome, endereco) FROM Pessoas
 
 DELETE FROM Pessoas WHERE nome = 'Fulano';
+DELETE FROM Pessoas 
 ```
 ******************************************************
 ## Compilando o projeto
