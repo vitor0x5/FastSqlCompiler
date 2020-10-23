@@ -103,9 +103,13 @@ DELETE FROM Pessoas
 ## Compilando o projeto
 Caso você deseje compilar o código fonte siga os passos a baixo:
 
-1. Abra o projeto em uma IDE Java (recomendação: [Apache NetBeans](http://netbeans.apache.org/))
-2. Execute a verificação de pacotes/plugins do maven
-3. Clique no botão de Build da sua IDE
+1. Clone o projeto
+```
+git clone https://github.com/vitor0x5/FastSqlCompiler.git
+```
+2. Abra o projeto em uma IDE Java (recomendação: [Apache NetBeans](http://netbeans.apache.org/))
+3. Execute a verificação de pacotes/plugins do maven
+4. Clique no botão de Build da sua IDE
 
 ## Utilizando o compilador
 Para utilizar o compilador siga os passos a baixo:
