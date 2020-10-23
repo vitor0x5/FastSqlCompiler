@@ -1,2 +1,2 @@
-Linha 8: Campo nome comporta somente 10
+Linha 12: Campo data é um 'DATE' mas está recebendo um 'INT'
 Fim da compilação!

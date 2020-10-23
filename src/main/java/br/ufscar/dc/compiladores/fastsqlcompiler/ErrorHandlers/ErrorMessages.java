@@ -1,7 +1,5 @@
 package br.ufscar.dc.compiladores.fastsqlcompiler.ErrorHandlers;
 
-import org.antlr.v4.runtime.Token;
-
 public class ErrorMessages {
     public static String errorsOutput = "";     // STORES ALL ERROR MESSAGES 
     

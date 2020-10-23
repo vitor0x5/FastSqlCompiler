@@ -74,7 +74,8 @@ public class Main {
                 return;
             }
             else{
-                //outputWriter.write(codigo_gerado);
+                System.out.println(GeradorDeCodigo.output);
+                outputWriter.write(GeradorDeCodigo.output);
             } 
             outputWriter.close();
         } catch (IOException ex) {
