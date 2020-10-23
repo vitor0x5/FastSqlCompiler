@@ -59,7 +59,7 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
         return null;
     }
     
-     private Type value_to_type(FastSqlParser.ValueContext ctx){
+    private Type value_to_type(FastSqlParser.ValueContext ctx){
         if(ctx.INT() != null){
             return Type.INT;
         }
@@ -77,6 +77,7 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
         }
         return null;
     }
+    
      
     private int get_value_line(FastSqlParser.ValueContext ctx){
         if(ctx.INT() != null){
@@ -236,7 +237,21 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
             return null;
         }
         
-        validate_values(table, ctx.value());
+        if(validate_values(table, ctx.value())){
+            //INSERT INTO table_name (column1, column2, column3, ...)
+            //VALUES (value1, value2, value3, ...);
+            String s = "INSERT INTO " + table.name +"(";
+            String columns = "";
+            String values = "";
+                    
+            for(var value: ctx.value()){
+                values += value.getText();
+                if(value != ctx.value(ctx.value().)){
+                    s += ", ";
+                }
+            }
+        };
+        
         
         return null;
     }
