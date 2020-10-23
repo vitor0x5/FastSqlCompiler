@@ -1,11 +1,8 @@
 createTable(Pessoas)
     .columns(
-        id:int
+        idade:int,
+        data:date,
+        nome:varchar(10)
     )
 
-Pessoas.insert(1, "Fulano", "20", "Rua dois")
-
-Pessoas.find(nome: "Fulano", idade: 20)
-Pessoas.find(nome: "Fulano", idade: 20).columns(nome, endereco)
-
-Pessoas.delete(nome: "Fulano")
+Pessoas.insert(22, 1998-06-04, "Bortoasdasdasd")

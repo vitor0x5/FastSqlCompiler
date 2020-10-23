@@ -112,6 +112,12 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
         }
         for(var value: values){
             if(value_to_type(value) == table.fields.get(i).type){
+                if(value_to_type(value) == Type.VARCHAR){
+                    if(table.fields.get(i).len < value.VARCHAR().getText().length()){
+                        ErrorMessages.ToBigVarchar(table.fields.get(i).name, table.fields.get(i).len, value.VARCHAR().getSymbol().getLine());
+                        return false;
+                    }
+                }
                 i++;
             }
             else{
@@ -189,6 +195,12 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
         
         for(var decl_column: ctx.decl_column()){
             String field_name = decl_column.IDENT().getText();
+            for(var field: table_fields){
+                if(field.name.equals(field_name)){
+                    ErrorMessages.AlreadyACollumn(field_name, table_name, ctx.IDENT().getSymbol().getLine());
+                    return null;
+                }
+            }
             Type field_type = str_to_type(decl_column.TYPE().getText());
             int field_size = 0;
             if(decl_column.sized() != null ){
