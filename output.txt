@@ -1,0 +1,5 @@
+Line 6: Insert recebeu 4 colunas quando deveria receber 1
+Linha 8: Tabela Pessoas não possui campo nome
+Linha 9: Tabela Pessoas não possui campo nome
+Linha 11: Tabela Pessoas não possui campo nome
+Fim da compilação!

@@ -10,6 +10,12 @@ public class ErrorMessages {
         errorsOutput += message;
     }
     
+    public static void WrongNumberOfCollumns(int table_collumns, int given_collums, int line){
+        String message = "Line " + line + ": Insert recebeu " + given_collums +
+        " colunas quando deveria receber " + table_collumns + "\n";
+        errorsOutput += message;
+    }
+    
     public static void unclosedString (int line) {
         String message = "Linha " + line + ": cadeia literal nao fechada\n";
         errorsOutput += message;

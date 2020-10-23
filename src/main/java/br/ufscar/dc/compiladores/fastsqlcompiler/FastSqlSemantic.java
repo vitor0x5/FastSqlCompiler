@@ -99,6 +99,17 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
     
     private boolean validate_values(Table table, List<FastSqlParser.ValueContext> values){
         int i = 0;
+        if(values.size() != table.fields.size()){
+            int line = 0;
+            if(values.get(0).INT() != null){ line = values.get(0).INT().getSymbol().getLine();}
+            else if(values.get(0).BOOLEAN() != null){ line = values.get(0).BOOLEAN().getSymbol().getLine();}
+            else if(values.get(0).DATE() != null){ line = values.get(0).DATE().getSymbol().getLine();}
+            else if(values.get(0).REAL() != null){ line = values.get(0).REAL().getSymbol().getLine();}
+            else if(values.get(0).VARCHAR() != null){ line = values.get(0).VARCHAR().getSymbol().getLine();}
+                    
+            ErrorMessages.WrongNumberOfCollumns(table.fields.size(), values.size(), line);
+            return false;
+        }
         for(var value: values){
             if(value_to_type(value) == table.fields.get(i).type){
                 i++;
