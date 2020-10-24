@@ -1,0 +1,17 @@
+createTable(Pessoas)
+    .columns(
+        id:int,
+        nome:varchar(50),
+        idade:int,
+        endereco:varchar(50),
+        aniversario:date
+    )
+
+createTable(Pessoas)
+    .columns(
+        id:int,
+        nome:varchar(50),
+        idade:int,
+        endereco:varchar(50),
+        aniversario:date
+    )

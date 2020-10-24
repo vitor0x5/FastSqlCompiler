@@ -175,6 +175,12 @@ public class FastSqlSemantic extends FastSqlBaseVisitor<Void>{
     @Override
     public Void visitCreate_table(FastSqlParser.Create_tableContext ctx) {
         String table_name = ctx.IDENT().getText();
+        for(var table: tables){
+            if(table.name.equals(table_name)){
+                ErrorMessages.TableExists(table_name, ctx.IDENT().getSymbol().getLine());
+                return null;
+            }
+        }
         ArrayList<Field> table_fields = new ArrayList<>();
         
         for(var decl_column: ctx.decl_column()){

@@ -15,7 +15,7 @@ public class ErrorMessages {
     }
     
     public static void AlreadyACollumn(String ident, String table_name, int line){
-        String message = "Line " + line + ": " + table_name + "já possui coluna " + 
+        String message = "Line " + line + ": " + table_name + " já possui coluna " + 
         ident + "\n";
         errorsOutput += message;
     }
@@ -65,6 +65,11 @@ public class ErrorMessages {
     public static void ToBigVarchar(String field_name, int len, int line) {
         String message = "Linha " + line + ": Campo " +  field_name + " comporta " + 
         "somente " + len + "\n";
+        errorsOutput += message;
+    }
+
+    public static void TableExists(String table_name, int line) {
+        String message = "Linha " + line + ": Tablea " +  table_name + " já existe";
         errorsOutput += message;
     }
     

@@ -1,0 +1,5 @@
+createTable(Pessoas)
+    .columns(
+        id:int,
+        id:varchar(50)
+    )
