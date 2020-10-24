@@ -13,9 +13,9 @@ incluir dados em tabelas de bancos de dados.
 ```
 createTable(Pessoas)
     .columns(
-        id:int, 
-        nome:varchar(50), 
-        idade:varchar(3), 
+        id:int,
+        nome:varchar(50),
+        idade:varchar(3),
         endereco:varchar(50)
     )
 ```
@@ -26,21 +26,21 @@ Pessoas.insert(1, "Fulano", "20", "Rua dois")
 
 
 - Pesquisando linhas
-``` 
+```
 Pessoas.find(nome: "Fulano", idade: "20")
 ```
 
-``` 
+```
 Pessoas.find(nome: "Fulano", idade: "20").columns(nome, endereco)
-``` 
+```
 
-``` 
+```
 Pessoas.findAll()
 ```
 
-``` 
+```
 Pessoas.findAll().columns(nome, endereco)
-``` 
+```
 
 - Deletando linhas
 ```
@@ -54,18 +54,19 @@ Pessoas.deleteAll()
 
 ******************************************************
 ## O compilador
-O compilador da linguagem Fast Sql gera código sql e realiza análises léxicas, 
-sintáticas e semanticas para auxiliar o programador na hora de codar. 
+O compilador da linguagem Fast Sql gera código sql e realiza análises léxicas,
+sintáticas e semanticas para auxiliar o programador na hora de codar.
 Ele foi criado utilizando a biblioteca [Antlr 4.8](https://www.antlr.org/) e a
 linguagem Java
+
 ### Exemplo de geração de código
-- Código escrito em Fast Sql: 
+- Código escrito em Fast Sql:
 ```
 createTable(Pessoas)
     .columns(
-        id:int, 
-        nome:varchar(50), 
-        idade:varchar(3), 
+        id:int,
+        nome:varchar(50),
+        idade:varchar(3),
         endereco:varchar(50)
     )
 
@@ -83,9 +84,9 @@ Pessoas.deleteAll()
 
 ```
 CREATE TABLE Pessoas (
-  id int, 
-  nome varchar(50), 
-  idade varchar(3), 
+  id int,
+  nome varchar(50),
+  idade varchar(3),
   endereco varchar(50),
 );
 
@@ -97,7 +98,7 @@ SELECT * FROM Pessoas
 SELECT (nome, endereco) FROM Pessoas
 
 DELETE FROM Pessoas WHERE nome = 'Fulano';
-DELETE FROM Pessoas 
+DELETE FROM Pessoas
 ```
 ******************************************************
 ## Compilando o projeto
@@ -114,17 +115,22 @@ git clone https://github.com/vitor0x5/FastSqlCompiler.git
 ## Utilizando o compilador
 Para utilizar o compilador siga os passos a baixo:
 
-1. Escreva um código em Fast Sql e salve em um arquivo .txt
+1. Escreva um código em Fast Sql e salve em um arquivo
 2. Baixe o [executável do compilador](https://github.com/vitor0x5/FastSqlCompiler/blob/master/target/fastSqlCompiler-1.0-SNAPSHOT-jar-with-dependencies.jar) ou compile o projeto você mesmo
 3. Abra um terminal e execute o seguinte comando:
 ```
-java -jar fastSqlCompiler-1.0-SNAPSHOT-jar-with-dependencies.jar seu-código-fast-sql.txt arquivo-de-saída.txt
+java -jar fastSqlCompiler-1.0-SNAPSHOT-jar-with-dependencies.jar <seu-código-fast-sql> <arquivo-de-saída>
 ```
-4. O compilador irá analisar seu-código-fast-sql.txt e imprimir no arquivo-de-saída.txt os erros (caso haja algum) ou o código sql gerado
+4. O compilador irá analisar <seu-código-fast-sql> e imprimir em <arquivo-de-saída> os erros (caso haja algum) ou o código sql gerado
 5. Use o código gerado em seu banco de dados de preferência
 
+******************************************************
+##Arquivos do projeto
 
+Existem 3 arquivos escenciais para a compreensão do projeto, são eles:
 
+1. src/main/antlr4/br/ufscar/dc/compiladores/fastsqlcompiler/***FastSql.g4***: esse arquivo define a gramatica da linguagem, é um arquivo utilizado pela ferramenta Antlr para gerar classes que irão funcionar como nosso analizadores léxico, sintático e semântico.
 
+2. src/main/java/br/ufscar/dc/compiladores/fastsqlcompiler/***Main.java***: esse arquivo combina todas as classes em um lugar só e gera a nossa execução principal.
 
-
+3. src/main/java/br/ufscar/dc/compiladores/fastsqlcompiler/***FastSqlSemantic.java***: nesse arquivos temos a implementação do analizador semântico, ele usa a classe FastSqlBaseVisitor gerada automaticamente pelo Antlr, essa classe nos permite navegar pela árvore sintática do nosso programa, então podemos fazer verificacões de todo tipo.

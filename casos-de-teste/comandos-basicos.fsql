@@ -1,0 +1,20 @@
+createTable(Pessoas)
+    .columns(
+        id:int,
+        nome:varchar(50),
+        idade:int,
+        endereco:varchar(50),
+        aniversario:date
+    )
+
+Pessoas.insert(1, "Borto", 22, "Rua Escócia", 1998-06-04)
+Pessoas.insert(2, "Vitor Hugo", 21, "Rua Islândia", 1998-12-17)
+Pessoas.insert(3, "Nico", 21, "Rua Suécia", 1998-11-16)
+
+Pessoas.find(nome: "Borto")
+Pessoas.find(nome: "Vitor Hugo", idade: 21).columns(nome, endereco)
+Pessoas.findAll()
+Pessoas.findAll().columns(nome, endereco)
+
+Pessoas.delete(nome: "Borto")
+Pessoas.deleteAll()
