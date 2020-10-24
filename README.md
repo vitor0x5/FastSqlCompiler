@@ -1,6 +1,6 @@
 # Fast Sql Compiler
 #### Compilador e linguagem criados para a disciplina Construção de Compiladores
-####               do Departamento de Computação - UFSCar  
+#### do Departamento de Computação - UFSCar
 _____________________________________________________________________________________
 
 ## Linguagem Fast Sql
@@ -58,7 +58,7 @@ O compilador da linguagem Fast Sql gera código sql e realiza análises léxicas
 sintáticas e semanticas para auxiliar o programador na hora de codar.
 Ele foi criado utilizando a biblioteca [Antlr 4.8](https://www.antlr.org/) e a
 linguagem Java
-
+ç - Simbolo não identificado
 ### Exemplo de geração de código
 - Código escrito em Fast Sql:
 ```
@@ -129,8 +129,18 @@ java -jar fastSqlCompiler-1.0-SNAPSHOT-jar-with-dependencies.jar <seu-código-fa
 
 Existem 3 arquivos escenciais para a compreensão do projeto, são eles:
 
-1. src/main/antlr4/br/ufscar/dc/compiladores/fastsqlcompiler/***FastSql.g4***: esse arquivo define a gramatica da linguagem, é um arquivo utilizado pela ferramenta Antlr para gerar classes que irão funcionar como nosso analizadores léxico, sintático e semântico.
+1. src/main/antlr4/br/ufscar/dc/compiladores/fastsqlcompiler/***FastSql.g4***: esse arquivo define a gramatica da linguagem, é um arquivofor FILE in casos-de-teste/*; do java -jar target/fastSqlCompiler-1.0-SNAPSHOT-jar-with-dependencies.jar $FILE $FILE.output; done utilizado pela ferramenta Antlr para gerar classes que irão funcionar como nosso analizadores léxico, sintático e semântico.
 
 2. src/main/java/br/ufscar/dc/compiladores/fastsqlcompiler/***Main.java***: esse arquivo combina todas as classes em um lugar só e gera a nossa execução principal.
 
-3. src/main/java/br/ufscar/dc/compiladores/fastsqlcompiler/***FastSqlSemantic.java***: nesse arquivos temos a implementação do analizador semântico, ele usa a classe FastSqlBaseVisitor gerada automaticamente pelo Antlr, essa classe nos permite navegar pela árvore sintática do nosso programa, então podemos fazer verificacões de todo tipo.
+3. src/main/java/br/ufscar/dc/compiladores/fastsqlcompiler/***FastSqlSeç - Simbolo não identificadomantic.java***: nesse arquivos temos a implementação do analizador semântico, ele usa a classe FastSqlBaseVisitor gerada automaticamente pelo Antlr, essa classe nos permite navegar pela árvore sintática do nosso programa, então podemos fazer verificacões de todo tipo.
+
+*********************************************************
+## Casos de teste
+Os casos de teste estão na basta '/casos-de-teste' e consistem em uma série de arquivos .fsql que contêm exemplos de programas usando a linguagem criada nesse projeto e também arquivos .fsql.output que é o retorno do compilador para cada um dos arquivos contendo o programa. Para gerar novamente os arquivos de output, exclua os já existentes e execute no seu terminal, estando na pasta raiz do projeto, o sequinte comando:
+
+```console
+for FILE in casos-de-teste/*; do java -jar target/fastSqlCompiler-1.0-SNAPSHOT-jar-with-dependencies.jar $FILE $FILE.output; done
+```
+
+O arquivo de teste 'exemplo-claro.fsql' é o único arquivo que possui geração de código, os demais arquivos mostram como o compilador trata diferentes erros no programa.

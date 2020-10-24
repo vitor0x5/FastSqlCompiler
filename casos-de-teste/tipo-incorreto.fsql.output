@@ -1,0 +1,6 @@
+Linha 10: Campo id é um 'INT' mas está recebendo um 'VARCHAR'
+Linha 11: Campo nome é um 'VARCHAR' mas está recebendo um 'DATE'
+Linha 12: Campo aniversario é um 'DATE' mas está recebendo um 'BOOLEAN'
+Linha 13: Campo carta é um 'BOOLEAN' mas está recebendo um 'VARCHAR'
+Linha 14: Campo salario é um 'REAL' mas está recebendo um 'BOOLEAN'
+Fim da compilação!

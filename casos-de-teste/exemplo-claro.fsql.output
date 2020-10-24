@@ -1,0 +1,32 @@
+CREATE TABLE Pessoas(
+
+  id INT
+
+  nome VARCHAR(50)
+
+  idade INT
+
+  endereco VARCHAR(50)
+
+  aniversario DATE
+
+);
+
+INSERT INTO Pessoas(id, nome, idade, endereco, aniversario, ) VALUES (1, "Borto", 22, "Rua Escócia", 1998-06-04);
+
+INSERT INTO Pessoas(id, nome, idade, endereco, aniversario, ) VALUES (2, "Vitor Hugo", 21, "Rua Islândia", 1998-12-17);
+
+INSERT INTO Pessoas(id, nome, idade, endereco, aniversario, ) VALUES (3, "Nico", 21, "Rua Suécia", 1998-11-16);
+
+SELECT * FROM Pessoas WHERE nome = "Borto";
+
+SELECT (nome, endereco) FROM Pessoas WHERE nome = "Vitor Hugo" AND idade = 21;
+
+SELECT * FROM Pessoas;
+
+SELECT (nome, endereco) FROM Pessoas;
+
+DELETE FROM Pessoas WHERE nome = "Borto";
+
+DELETE FROM Pessoas;
+
