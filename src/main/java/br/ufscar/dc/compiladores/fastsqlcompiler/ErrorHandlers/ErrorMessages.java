@@ -64,12 +64,12 @@ public class ErrorMessages {
 
     public static void ToBigVarchar(String field_name, int len, int line) {
         String message = "Linha " + line + ": Campo " +  field_name + " comporta " + 
-        "somente " + len + "\n";
+        "somente " + len + " caracteres\n";
         errorsOutput += message;
     }
 
     public static void TableExists(String table_name, int line) {
-        String message = "Linha " + line + ": Tablea " +  table_name + " já existe";
+        String message = "Linha " + line + ": Tabela " +  table_name + " já existe";
         errorsOutput += message;
     }
     

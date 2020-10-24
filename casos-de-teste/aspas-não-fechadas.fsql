@@ -1,0 +1,6 @@
+createTable(Pessoas)
+    .columns(
+        nome:varchar(50),
+    )
+
+Pessoas.insert("Borto)

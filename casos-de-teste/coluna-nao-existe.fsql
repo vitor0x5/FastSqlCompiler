@@ -1,0 +1,12 @@
+createTable(Pessoas)
+    .columns(
+        id:int,
+        nome:varchar(50),
+        idade:int,
+        endereco:varchar(50),
+        aniversario:date
+    )
+
+Pessoas.find(nomes: "Borto")
+Pessoas.delete(idades: 3)
+Pessoas.find(nome: "Borto").columns(nome, enderecos)

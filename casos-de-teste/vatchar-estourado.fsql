@@ -1,0 +1,7 @@
+createTable(Pessoas)
+    .columns(
+        id:int,
+        nome:varchar(10)
+    )
+
+Pessoas.insert(1, "Gabriel Bortolote")

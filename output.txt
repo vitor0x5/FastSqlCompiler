@@ -1,1 +1,2 @@
-Linha 10: Tablea Pessoas já existeFim da compilação!
+Linha 7: Campo nome comporta somente 10 caracteres
+Fim da compilação!

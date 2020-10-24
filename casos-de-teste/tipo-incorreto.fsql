@@ -1,0 +1,14 @@
+createTable(Pessoas)
+    .columns(
+        id:int,
+        nome:varchar(50),
+        aniversario:date,
+        carta:boolean,
+        salario:real
+    )
+
+Pessoas.find(id:"1")
+Pessoas.find(nome:1998-06-04)
+Pessoas.find(aniversario:false)
+Pessoas.find(carta:"true")
+Pessoas.find(salario:true)
