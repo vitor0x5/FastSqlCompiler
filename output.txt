@@ -1,2 +1,0 @@
-Linha 7: Campo nome comporta somente 10 caracteres
-Fim da compilação!

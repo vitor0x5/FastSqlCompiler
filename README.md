@@ -23,7 +23,7 @@ createTable(Pessoas)
 ```
 Pessoas.insert(1, "Fulano", "20", "Rua dois")
 ```
-
+https://www.youtube.com/watch?v=lzDJAD4NkQ4&feature=youtu.be
 
 - Pesquisando linhas
 ```
@@ -50,8 +50,6 @@ Pessoas.delete(nome: "Fulano")
 Pessoas.deleteAll()
 ```
 
-
-
 ******************************************************
 ## O compilador
 O compilador da linguagem Fast Sql gera código sql e realiza análises léxicas,
@@ -62,7 +60,7 @@ linguagem Java
 ### Exemplo de geração de código
 - Código escrito em Fast Sql:
 ```
-createTable(Pessoas)
+createTable(Pessoas)https://www.youtube.com/watch?v=lzDJAD4NkQ4&feature=youtu.be
     .columns(
         id:int,
         nome:varchar(50),
@@ -92,7 +90,7 @@ CREATE TABLE Pessoas (
 
 INSERT INTO Pessoas VALUES (1, 'Fulano', '20', 'Rua dois');
 
-SELECT * FROM Pessoas WHERE nome = 'Fulano' AND idade = '20';
+SELECT * FROM Pessoas WHERE nome = 'Fulano'https://www.youtube.com/watch?v=lzDJAD4NkQ4&feature=youtu.be AND idade = '20';
 SELECT (nome, endereco) FROM Pessoas WHERE nome = 'Fulano' AND idade = '20';
 SELECT * FROM Pessoas
 SELECT (nome, endereco) FROM Pessoas
@@ -116,7 +114,7 @@ git clone https://github.com/vitor0x5/FastSqlCompiler.git
 Para utilizar o compilador siga os passos a baixo:
 
 1. Escreva um código em Fast Sql e salve em um arquivo
-2. Baixe o [executável do compilador](https://github.com/vitor0x5/FastSqlCompiler/blob/master/target/fastSqlCompiler-1.0-SNAPSHOT-jar-with-dependencies.jar) ou compile o projeto você mesmo
+2. Baixe o [executável do compilador](https://https://www.youtube.com/watch?v=lzDJAD4NkQ4&feature=youtu.begithub.com/vitor0x5/FastSqlCompiler/blob/master/target/fastSqlCompiler-1.0-SNAPSHOT-jar-with-dependencies.jar) ou compile o projeto você mesmo
 3. Abra um terminal e execute o seguinte comando:
 ```
 java -jar fastSqlCompiler-1.0-SNAPSHOT-jar-with-dependencies.jar <seu-código-fast-sql> <arquivo-de-saída>
@@ -144,3 +142,7 @@ for FILE in casos-de-teste/*; do java -jar target/fastSqlCompiler-1.0-SNAPSHOT-j
 ```
 
 O arquivo de teste 'exemplo-claro.fsql' é o único arquivo que possui geração de código, os demais arquivos mostram como o compilador trata diferentes erros no programa.
+
+### Video Explciativo
+
+[![IMAGE ALT TEXT HERE](https://www.youtube.com/watch?v=lzDJAD4NkQ4&feature=youtu.be)

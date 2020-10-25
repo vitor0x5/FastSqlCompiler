@@ -1,8 +1,0 @@
-createTable(Pessoas)
-    .columns(
-        idade:int,
-        data:date,
-        nome:varchar(50),
-        money:real,
-        programa:boolean
-    )
