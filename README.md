@@ -145,4 +145,4 @@ O arquivo de teste 'exemplo-claro.fsql' é o único arquivo que possui geração
 
 ### Video Explciativo
 
-[![IMAGE ALT TEXT HERE](https://www.youtube.com/watch?v=lzDJAD4NkQ4&feature=youtu.be)
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/lzDJAD4NkQ4/0.jpg)](http://www.youtube.com/watch?v=lzDJAD4NkQ4)
