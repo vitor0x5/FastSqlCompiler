@@ -59,7 +59,7 @@ linguagem Java
 ### Exemplo de geração de código
 - Código escrito em Fast Sql:
 ```
-createTable(Pessoas)https://www.youtube.com/watch?v=lzDJAD4NkQ4&feature=youtu.be
+createTable(Pessoas)
     .columns(
         id:int,
         nome:varchar(50),
@@ -89,7 +89,7 @@ CREATE TABLE Pessoas (
 
 INSERT INTO Pessoas VALUES (1, 'Fulano', '20', 'Rua dois');
 
-SELECT * FROM Pessoas WHERE nome = 'Fulano'https://www.youtube.com/watch?v=lzDJAD4NkQ4&feature=youtu.be AND idade = '20';
+SELECT * FROM Pessoas WHERE nome = 'Fulano';
 SELECT (nome, endereco) FROM Pessoas WHERE nome = 'Fulano' AND idade = '20';
 SELECT * FROM Pessoas
 SELECT (nome, endereco) FROM Pessoas
@@ -113,7 +113,7 @@ git clone https://github.com/vitor0x5/FastSqlCompiler.git
 Para utilizar o compilador siga os passos a baixo:
 
 1. Escreva um código em Fast Sql e salve em um arquivo
-2. Baixe o [executável do compilador](github.com/vitor0x5/FastSqlCompiler/blob/master/target/fastSqlCompiler-1.0-SNAPSHOT-jar-with-dependencies.jar) ou compile o projeto você mesmo
+2. Baixe o [executável do compilador](https://github.com/vitor0x5/FastSqlCompiler/blob/master/target/fastSqlCompiler-1.0-SNAPSHOT-jar-with-dependencies.jar) ou compile o projeto você mesmo
 3. Abra um terminal e execute o seguinte comando:
 ```
 java -jar fastSqlCompiler-1.0-SNAPSHOT-jar-with-dependencies.jar <seu-código-fast-sql> <arquivo-de-saída>
