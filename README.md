@@ -23,7 +23,6 @@ createTable(Pessoas)
 ```
 Pessoas.insert(1, "Fulano", "20", "Rua dois")
 ```
-https://www.youtube.com/watch?v=lzDJAD4NkQ4&feature=youtu.be
 
 - Pesquisando linhas
 ```
@@ -114,7 +113,7 @@ git clone https://github.com/vitor0x5/FastSqlCompiler.git
 Para utilizar o compilador siga os passos a baixo:
 
 1. Escreva um código em Fast Sql e salve em um arquivo
-2. Baixe o [executável do compilador](https://https://www.youtube.com/watch?v=lzDJAD4NkQ4&feature=youtu.begithub.com/vitor0x5/FastSqlCompiler/blob/master/target/fastSqlCompiler-1.0-SNAPSHOT-jar-with-dependencies.jar) ou compile o projeto você mesmo
+2. Baixe o [executável do compilador](github.com/vitor0x5/FastSqlCompiler/blob/master/target/fastSqlCompiler-1.0-SNAPSHOT-jar-with-dependencies.jar) ou compile o projeto você mesmo
 3. Abra um terminal e execute o seguinte comando:
 ```
 java -jar fastSqlCompiler-1.0-SNAPSHOT-jar-with-dependencies.jar <seu-código-fast-sql> <arquivo-de-saída>
@@ -123,7 +122,7 @@ java -jar fastSqlCompiler-1.0-SNAPSHOT-jar-with-dependencies.jar <seu-código-fa
 5. Use o código gerado em seu banco de dados de preferência
 
 ******************************************************
-##Arquivos do projeto
+## Arquivos do projeto
 
 Existem 3 arquivos escenciais para a compreensão do projeto, são eles:
 
