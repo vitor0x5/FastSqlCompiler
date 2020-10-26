@@ -55,7 +55,6 @@ O compilador da linguagem Fast Sql gera código sql e realiza análises léxicas
 sintáticas e semanticas para auxiliar o programador na hora de codar.
 Ele foi criado utilizando a biblioteca [Antlr 4.8](https://www.antlr.org/) e a
 linguagem Java
-ç - Simbolo não identificado
 ### Exemplo de geração de código
 - Código escrito em Fast Sql:
 ```
